@@ -1,13 +1,9 @@
-.example-container {
-    /* width: 100%; */
+/* .example-container {
     height: 100vh;
 }
   
 .example-sidenav-content {
     display: flex;
-    /* height: 100%; */
-    /* align-items: center; */
-    /* justify-content: center; */
 }
   
 .example-sidenav {
@@ -25,4 +21,23 @@
     border: none;
     color: white;
 
+} */
+body{
+    margin: 0;
+}
+.content{
+    position: relative;
+    max-width: 1060px;
+    margin: auto;
+    height: calc(100% - 64px);
+}
+.btn{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+@media(min-width:600px){
+    .content{
+        height: calc(100% - 156px);
+    }
 }
