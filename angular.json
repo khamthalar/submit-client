@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "submit-client": {
+    "login002": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/submit-client",
+            "outputPath": "dist/login002",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -59,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "submit-client:build"
+            "browserTarget": "login002:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "submit-client:build:production"
+              "browserTarget": "login002:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "submit-client:build"
+            "browserTarget": "login002:build"
           }
         },
         "test": {
@@ -105,7 +105,7 @@
         }
       }
     },
-    "submit-client-e2e": {
+    "login002-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -114,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "submit-client:serve"
+            "devServerTarget": "login002:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "submit-client:serve:production"
+              "devServerTarget": "login002:serve:production"
             }
           }
         },
@@ -134,5 +134,5 @@
       }
     }
   },
-  "defaultProject": "submit-client"
+  "defaultProject": "login002"
 }
