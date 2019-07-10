@@ -1,5 +1,22 @@
-<form (submit)="onSubmit($event)">
+<!-- <form (submit)="onSubmit($event)">
   <input type="text" id="user" placeholder="user">
   <input type="password" id="password" placeholder="password">
   <button type="submit">submit</button>
+</form> -->
+
+<form class="login-form text-center" [formGroup]="loginForm">
+  <mat-form-field class="txt-field">
+    <!-- <mat-icon matSuffix>person</mat-icon>
+    <mat-icon matPrefix>person</mat-icon> -->
+    <input type="text" matInput placeholder="User Name" required formControlName="txtuser">
+  </mat-form-field>
+  <mat-form-field class="txt-field">
+    <input matInput placeholder="ລະຫັດຜ່ານ" required 
+    [type]="hide ? 'password':'text'"
+    formControlName="txtpassword">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <div>
+    <button mat-flat-button color="primary" (click)="login_Clicked()">ເຂົ້າສູ່ລະບົບ</button>
+  </div>
 </form>

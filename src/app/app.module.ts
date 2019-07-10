@@ -10,16 +10,13 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCheckboxModule,
-  MatButtonModule,
-  MatInputModule,
-  MatRadioModule,
-  MatSidenavModule,
-  MatIconModule,
-  MatProgressSpinnerModule, MatToolbarModule, MatListModule
-} from '@angular/material';
+
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+
+
+import {MaterialModule} from './material-module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -38,16 +35,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatSidenavModule,
-    MatIconModule,
+    MaterialModule,
     LayoutModule,
-    MatToolbarModule,
-    MatListModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]
