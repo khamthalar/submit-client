@@ -17,4 +17,7 @@ export class HomeComponent implements OnInit {
     this.auth.setLogin(false);
     this.router.navigate(['login']);
   }
+  newSubmit(){
+    this.router.navigate(['submit']);
+  }
 }

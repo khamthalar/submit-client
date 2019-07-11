@@ -20,6 +20,10 @@
   display: block !important;
   margin: 5px 0 5px 0;
 }
+.nav{
+  background-color: brown;
+  color: white;
+}
 
 @media(min-width:600px){
   .main-nav{

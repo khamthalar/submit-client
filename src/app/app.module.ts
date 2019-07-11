@@ -17,6 +17,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import {MaterialModule} from './material-module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SubmitPageComponent } from './submit-page/submit-page.component';
 
 
 
@@ -26,7 +27,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MainNavComponent
+    MainNavComponent,
+    SubmitPageComponent
     
   ],
   imports: [

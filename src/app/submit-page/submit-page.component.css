@@ -1,0 +1,11 @@
+.nav-bar{
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 56px;
+    background-color: brown;
+    color: white;
+}
+.title-body-content{
+    vertical-align: middle;
+    padding-top: 8px;
+}

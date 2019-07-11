@@ -3,7 +3,15 @@
     width: 400px;
 }
 .txt-field{
+    margin: auto;
     display: block;
+    max-width: 320px;
+}
+.header{
+    padding-top: 20px;
+}
+.login-logo{
+    padding-bottom: 20px;
 }
 @media(max-width:400px){
     .login-form{
