@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import default_data from './default_data.json';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +21,6 @@ export class AuthService {
       "user":user,
       "password":password
     }
-    return this.http.post<any>('http://localhost:8080/api/public/getUser',data);
+    return this.http.post<any>(default_data.base_url+'/getUser',data);
   }
 }

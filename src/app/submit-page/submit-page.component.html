@@ -38,17 +38,17 @@
       <span class="btn-text">ເລືອກຮູບ</span>
     </button>
     <mat-radio-group class="radio-group" formControlName="rd_choices" #radioGroup="matRadioGroup">
-      <mat-radio-button value="important" class="rd_btn" id="rdc1">ສ້ອມແປງດ່ວນ</mat-radio-button>
-      <mat-radio-button value="none" class="rd_btn" id="rdc2" checked>ບໍ່ດ່ວນ</mat-radio-button>
+      <mat-radio-button value="1" class="rd_btn" id="rdc1">ສ້ອມແປງດ່ວນ</mat-radio-button>
+      <mat-radio-button value="0" class="rd_btn" id="rdc2" checked>ບໍ່ດ່ວນ</mat-radio-button>
     </mat-radio-group>
     <label id="radio-group-label" style="background-color:white;">ຜູ້ແຈ້ງ</label>
     <div class="frame">
       <mat-form-field [floatLabel]="'never'" style="width: 100%; padding-left: 20px; padding-right: 20px;">
-        <input matInput placeholder="ຊື່...">
+        <input matInput placeholder="ຊື່..." formControlName="txtU_Name">
       </mat-form-field>
       <mat-form-field style="width: 100%; padding-left: 20px; padding-right: 20px; margin-top: -20px;">
         <label>ພະແນກ</label>
-        <mat-select>
+        <mat-select formControlName="department">
           <mat-option value="OP">OP</mat-option>
           <mat-option value="TR">TR</mat-option>
           <mat-option value="TC">TC</mat-option>
@@ -62,7 +62,9 @@
         </mat-select>
       </mat-form-field>
     </div>
-
+    <button type="button" (click)="submit()" class="btn-submit btn-labeled btn-danger">
+      Submit
+    </button>
   </form>
   <!-- <label for="test">{{radioGroup.value}}</label> -->
   <!-- <label for="test">{{rd_select}}</label> -->
