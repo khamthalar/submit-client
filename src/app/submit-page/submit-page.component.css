@@ -4,17 +4,23 @@
     height: 56px;
     background-color: brown;
     color: white;
+    text-align: center;
+    position: relative;
 }
 .title-body-content{
     vertical-align: middle;
-    padding-top: 8px;
+    padding-top: 12px;
 }
 .lb{
     font-size:20px !important;
-    margin-left: 10px !important;
+    padding-left: 40px !important;
+    padding-right: 40px;
 }
-.btn_back_icon{
-    font-size:32px !important;
+.close_icon{
+    width: 20px;
+    position: absolute;
+    right: 16px;
+    top: 18px;
 }
 
 .radio-group{

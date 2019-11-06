@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder,FormControl } from '@angular/forms';
-import { MatRadioChange } from '@angular/material';
+import { MatRadioChange, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 
 
@@ -16,7 +16,7 @@ export class SubmitPageComponent implements OnInit {
   test:String;
   rd_select:boolean=false;
   devices:String;
-  constructor(private router:Router,fb: FormBuilder,private http:HttpClient) { 
+  constructor(private router:Router,fb: FormBuilder,private http:HttpClient,public dialogRef: MatDialogRef<SubmitPageComponent>) { 
     this.submitForm = fb.group({
       rd_device:new FormControl(''),
       txt_rd:new FormControl(''),
@@ -65,5 +65,8 @@ export class SubmitPageComponent implements OnInit {
       window.alert("canot submit data, please contact Administrator!")
     });
     
+  }
+  close(){
+    this.dialogRef.close();
   }
 }

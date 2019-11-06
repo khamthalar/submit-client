@@ -2,7 +2,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { throwToolbarMixedModesError } from '@angular/material';
+import { throwToolbarMixedModesError, MatDialog } from '@angular/material';
+import { SubmitPageComponent } from '../submit-page/submit-page.component';
 
 @Component({
   selector: 'app-main-nav',
@@ -17,7 +18,7 @@ export class MainNavComponent {
     .pipe(
       map(result => result.matches)
     );
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,public dialog: MatDialog) {}
   logout(){
     this.logOut_Clicked.emit();
   }

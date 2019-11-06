@@ -1,10 +1,9 @@
 <div class="nav-bar">
   <div class="title-body-content">
-    <button type="button" mat-icon-button (click)="back_Clicked()">
-      <mat-icon aria-label="Side nav toggle icon" class="btn_back_icon">navigate_before</mat-icon>
-      <span class="lb">ແຈ້ງບັນຫາຄອມພິວເຕີ</span>
-    </button>
+    <span class="lb">ແຈ້ງບັນຫາຄອມພິວເຕີ</span>
+    
   </div>
+  <img class="close_icon" src="assets/images/delete.svg" (click)="close()">
 </div>
 <div class="containner">
   <form class="submit-form" [formGroup]="submitForm">
@@ -22,11 +21,6 @@
         </mat-radio-button>
       </mat-radio-group>
     </div>
-    <!-- <label style="background-color:white;">ອາການ</label> -->
-    <!-- <mat-form-field>
-        <mat-label>ອາການ</mat-label>
-        <textarea matInput formControlName="txt_des" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=5></textarea>
-    </mat-form-field> -->
     <mat-form-field style="width: 100%;" appearance="outline" [floatLabel]="'always'">
       <mat-label style="font-size:25px !important;">ອາການ</mat-label>
       <textarea matInput rows="5" formControlName="txt_des"></textarea>
@@ -63,9 +57,7 @@
       </mat-form-field>
     </div>
     <button type="button" (click)="submit()" class="btn-submit btn-labeled btn-danger">
-      Submit
+      Send
     </button>
   </form>
-  <!-- <label for="test">{{radioGroup.value}}</label> -->
-  <!-- <label for="test">{{rd_select}}</label> -->
 </div>
