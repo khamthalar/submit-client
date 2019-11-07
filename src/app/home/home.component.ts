@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     // catch event popup closed
     dialogRef.afterClosed().subscribe(result => {
       if(result.status=="success"){
-        
+        this.updateData();
       }
     });
   }
@@ -45,6 +45,5 @@ export class HomeComponent implements OnInit {
     this.http.get<any>(default_data.base_url+'/get_client_devices_submit').subscribe(result=>{
       this.submit_device_info = result;
     });
-    console.log(this.submit_device_info);
   }
 }

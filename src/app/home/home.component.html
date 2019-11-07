@@ -1,9 +1,16 @@
-
 <app-main-nav class="main-nav" (logOut_Clicked)="logout()">
     <div class="content">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of submit_device_info">
+                <div class="id">{{item.id}}</div>
+                <div class="device">{{item.devices}}</div>
+                <div class="discription">ອາການ: {{item.discription}}</div>
+            </li>
+        </ul>
+
+
         <button mat-mini-fab class="btn" (click)="openDialog()">
             <mat-icon>add_to_photos</mat-icon>
         </button>
     </div>
-  </app-main-nav>
- 
+</app-main-nav>

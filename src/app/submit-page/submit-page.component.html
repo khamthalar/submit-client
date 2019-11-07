@@ -9,10 +9,11 @@
   <form class="submit-form" [formGroup]="submitForm">
     <label id="radio-group-label" style="background-color:white;">ອຸປະກອນ</label>
     <div class="frame">
-      <mat-radio-group class="radio-group" formControlName="rd_device" #radioGroup="matRadioGroup"
+      <mat-radio-group style="margin-bottom: 0 !important;" class="radio-group" formControlName="rd_device" #radioGroup="matRadioGroup"
         (change)="rd_changed($event)">
         <mat-radio-button value="Computer" class="rd_btn" id="rd01">Computer</mat-radio-button>
         <mat-radio-button value="Printer" class="rd_btn" id="rd02">Printer</mat-radio-button>
+        <mat-radio-button value="Internet" class="rd_btn" id="rd04">Internet</mat-radio-button>
         <mat-radio-button [value]="test" class="rd_btn" checked={{rd_select}} id="rd03">
           <mat-form-field [floatLabel]="'never'">
             <input matInput placeholder="ອື່ນໆ..." formControlName="txt_rd" [(ngModel)]="test"
