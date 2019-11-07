@@ -43,6 +43,18 @@
     border: 1px solid brown;
     margin-top: -20px;
 }
+.txt_des_frame{
+    border: 1px solid brown;
+    padding-left: 10px;
+    padding-right: 2px;
+    padding-top: 10px;
+    margin-top: -20px;
+    margin-bottom: 5px;
+}
+.txt_des{
+    border: 0 !important;
+    width: 100% !important;
+}
 .radio-group-label{
     background-color:white !important;
 }

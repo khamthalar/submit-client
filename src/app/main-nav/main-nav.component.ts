@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,8 @@ import { SubmitPageComponent } from '../submit-page/submit-page.component';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit{
+  username:string;
 
   @Output() logOut_Clicked:EventEmitter<any>=new EventEmitter();
 
@@ -21,6 +22,9 @@ export class MainNavComponent {
   constructor(private breakpointObserver: BreakpointObserver,public dialog: MatDialog) {}
   logout(){
     this.logOut_Clicked.emit();
+  }
+  ngOnInit() {
+    this.username = localStorage.getItem('user_name');
   }
 
 }
