@@ -31,8 +31,10 @@
     margin: 15px 0;
 }
 .containner{
-    margin-left: 16px;
-    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow: scroll;
+
 }
 .rd_btn{
     margin: 5px;
@@ -77,4 +79,13 @@ align-items:center center;}
     margin-top: 10px !important;
     padding:5px 15px;
     border-radius: 4px;
+}
+.submit-form{
+    height: 620px;
+}
+
+@media(max-height:720px){
+    .containner{
+        height: calc(100vh - 56px) !important;
+    }
 }

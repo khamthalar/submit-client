@@ -26,3 +26,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         max-width: 100vw !important;
     }
 }
+@media(max-height:950px){
+    .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane,
+    .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane .mat-dialog-container
+    {
+        height: 100% !important;
+    }
+    /* ng-star-inserted */
+}
