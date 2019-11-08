@@ -15,6 +15,7 @@ import default_data from '../default_data.json';
 export class HomeComponent implements OnInit {
 
   submit_device_info:any;
+
   constructor(private auth:AuthService,private router:Router,private dialog:MatDialog,private http:HttpClient) { }
   username:string;
   ngOnInit() {
@@ -45,5 +46,8 @@ export class HomeComponent implements OnInit {
     this.http.get<any>(default_data.base_url+'/get_client_devices_submit').subscribe(result=>{
       this.submit_device_info = result;
     });
+  }
+  getImg(){
+    return "assets/images/wifi.svg";
   }
 }

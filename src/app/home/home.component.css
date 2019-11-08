@@ -18,3 +18,29 @@ body{
         height: calc(100% - 156px);
     }
 }
+
+.device-item{
+    position: relative;
+    display: flex;
+    align-items:center;
+}
+.device{
+    font-size: 18px;
+    line-height: 1.2 !important;
+}
+.discription{
+    font-size: 14px;
+    line-height: 1.2 !important;
+    max-width: 150px;
+    word-wrap: break-word;
+}
+.item-des{
+    padding:0;
+    padding-left: 5px;
+}
+.submit-time{
+    font-size: 12px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

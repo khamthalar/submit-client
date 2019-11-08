@@ -1,10 +1,31 @@
 <app-main-nav class="main-nav" (logOut_Clicked)="logout()">
     <div class="content">
         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let item of submit_device_info">
-                <div class="id">{{item.id}}</div>
-                <div class="device">{{item.devices}}</div>
-                <div class="discription">ອາການ: {{item.discription}}</div>
+            <li class="list-group-item device-item" *ngFor="let item of submit_device_info">
+                <div class="item-ico">
+                    <ng-template [ngIf]="item.devices=='Computer'">
+                        <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 50px;">
+                    </ng-template>
+                    <ng-template [ngIf]="item.devices=='Internet'">
+                        <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 50px;">
+                    </ng-template>
+                    <ng-template [ngIf]="item.devices=='Printer'">
+                        <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 50px;">
+                    </ng-template>
+                    <ng-template
+                        [ngIf]="item.devices!='Computer' && item.devices!='Internet' && item.devices!='Printer'">
+                        <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 50px;">
+                    </ng-template>
+                </div>
+                <div class="item-des">
+                    <div class="device">{{item.devices}}</div>
+                    <!-- <div class="discription">ອາການ:{{item.discription | slice:0:15}}...</div> -->
+                    <div class="discription">ອາການ:{{item.discription}}</div>
+                </div>
+                <div class="submit-time">
+                    <img src="assets/images/clock.svg" style="width: 15px;">
+                    {{item.submit_date | date:'dd MMM yyyy h:mm a'}}
+                </div>
             </li>
         </ul>
 
