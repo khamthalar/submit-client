@@ -18,6 +18,13 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {MaterialModule} from './material-module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
+import { AdminNavComponent } from './admin-nav/admin-nav.component';
+import { AdminDesboardComponent } from './admin-desboard/admin-desboard.component';
+
+import {AngularFireModule} from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 
 
 
@@ -28,7 +35,9 @@ import { SubmitPageComponent } from './submit-page/submit-page.component';
     LoginComponent,
     HomeComponent,
     MainNavComponent,
-    SubmitPageComponent
+    SubmitPageComponent,
+    AdminNavComponent,
+    AdminDesboardComponent
     
   ],
   imports: [
@@ -40,7 +49,9 @@ import { SubmitPageComponent } from './submit-page/submit-page.component';
     MaterialModule,
     LayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]
