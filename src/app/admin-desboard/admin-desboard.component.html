@@ -12,8 +12,7 @@
                     <ng-template [ngIf]="item.device=='Printer'">
                         <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 60px;">
                     </ng-template>
-                    <ng-template
-                        [ngIf]="item.device!='Computer' && item.device!='Internet' && item.device!='Printer'">
+                    <ng-template [ngIf]="item.device!='Computer' && item.device!='Internet' && item.device!='Printer'">
                         <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
                     </ng-template>
                 </div>
@@ -27,7 +26,7 @@
                     </div>
                 </div>
 
-                
+
             </li>
         </ul>
     </div>
