@@ -6,6 +6,9 @@ import { SubmitPageComponent } from '../submit-page/submit-page.component';
 import { HttpClient } from '@angular/common/http';
 
 import default_data from '../default_data.json';
+import { FirbaseServiceService } from '../firbase-service.service';
+
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +19,20 @@ export class HomeComponent implements OnInit {
 
   submit_device_info:any;
 
-  constructor(private auth:AuthService,private router:Router,private dialog:MatDialog,private http:HttpClient) { }
+  deviceList:any;
+
+  constructor(
+    private auth:AuthService,
+    private router:Router,
+    private dialog:MatDialog,
+    private http:HttpClient,
+    private firebaseService:FirbaseServiceService
+    ) { }
   username:string;
   ngOnInit() {
     this.username = localStorage.getItem('user_name');
-    this.updateData();
+    // this.updateData();
+    this.getDeviceList();
   }
   logout(){
     this.auth.setLogin(false);
@@ -38,16 +50,26 @@ export class HomeComponent implements OnInit {
     // catch event popup closed
     dialogRef.afterClosed().subscribe(result => {
       if(result.status=="success"){
-        this.updateData();
+        // this.updateData();
       }
     });
   }
-  updateData(){
-    this.http.get<any>(default_data.base_url+'/get_client_devices_submit').subscribe(result=>{
-      this.submit_device_info = result;
-    });
-  }
+  // updateData(){
+  //   this.http.get<any>(default_data.base_url+'/get_client_devices_submit').subscribe(result=>{
+  //     this.submit_device_info = result;
+  //   });
+  // }
   getImg(){
     return "assets/images/wifi.svg";
+  }
+
+  getDeviceList(){
+    this.firebaseService.getSubmitDeviceList().snapshotChanges().pipe(
+      map(changes=>changes.map(c=>({
+        key:c.payload.key,...c.payload.val()
+      })))
+    ).subscribe(devicelist=>{
+      this.deviceList = devicelist;
+    })
   }
 }

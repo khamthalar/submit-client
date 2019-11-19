@@ -1,0 +1,36 @@
+import { Injectable } from '@angular/core';
+import { Submit_device, userLogin } from './submitDevices';
+import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+
+// import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FirbaseServiceService {
+
+  private devicePath = '/DevicesSubmitted';
+  private userPath = '/user';
+  submitDeviceRef:AngularFireList<Submit_device>=null;
+  submitUserRef:AngularFireList<userLogin>=null;
+  constructor(private db:AngularFireDatabase) { 
+    this.submitDeviceRef = db.list(this.devicePath);
+    this.submitUserRef = db.list(this.userPath);
+  }
+  createSubmitDevice(device:Submit_device){
+    this.submitDeviceRef.push(device);
+  }
+
+  getSubmitDeviceList():AngularFireList<Submit_device>{
+    return this.submitDeviceRef;
+  }
+  createUser(user:userLogin){
+    this.submitUserRef.push(user);
+  }
+  getUserDetial(username:string):AngularFireList<userLogin>{
+    // let data = {"username":"administrator","name":"tik"}
+    // return this.db.list(this.userPath,ref=>ref.orderByChild('username').equalTo())
+    return this.db.list(this.userPath,ref=>ref.orderByChild('username').equalTo(username));
+  }
+}

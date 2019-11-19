@@ -35,3 +35,5 @@ IP: 202.136.241.118:8012
 logedin :  boolean (use for check islogin)
 user_name: string
 user_id: string
+
+page_name:string

@@ -23,14 +23,14 @@ export class AuthService {
       "password": password
     }
 
-    return new Promise((resolve, reject) => {
-      this.http.post(default_data.base_url + '/getUser', data).subscribe(
-        res => {
-          resolve(res); //value to return out of the promise
-        }, (err: HttpErrorResponse) => {
-          reject(err); //returning Error
-        }
-      );
-    });//end Promise
+    // return new Promise((resolve, reject) => {
+    //   this.http.post(default_data.base_url + '/getUser', data).subscribe(
+    //     res => {
+    //       resolve(res); //value to return out of the promise
+    //     }, (err: HttpErrorResponse) => {
+    //       reject(err); //returning Error
+    //     }
+    //   );
+    // });//end Promise
   }
 }

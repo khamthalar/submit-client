@@ -1,3 +1,34 @@
-<p>
-  admin-desboard works!
-</p>
+<app-admin-nav (logOut_Clicked)="logout()">
+    <div class="content">
+        <ul class="list-group">
+            <li class="list-group-item device-item" *ngFor="let item of deviceList">
+                <div class="item-ico">
+                    <ng-template [ngIf]="item.device=='Computer'">
+                        <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                    <ng-template [ngIf]="item.device=='Internet'">
+                        <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                    <ng-template [ngIf]="item.device=='Printer'">
+                        <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                    <ng-template
+                        [ngIf]="item.device!='Computer' && item.device!='Internet' && item.device!='Printer'">
+                        <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                </div>
+                <div class="item-des">
+                    <div class="device">{{item.device}}</div>
+                    <!-- <div class="discription">ອາການ:{{item.discription | slice:0:15}}...</div> -->
+                    <div class="discription">ອາການ:{{item.description}}</div>
+                    <div class="submit-time">
+                        <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
+                        <span style="margin-top: 5px;">{{item.submit_date | dateAgo}}</span>
+                    </div>
+                </div>
+
+                
+            </li>
+        </ul>
+    </div>
+</app-admin-nav>

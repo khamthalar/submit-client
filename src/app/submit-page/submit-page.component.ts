@@ -5,28 +5,43 @@ import { MatRadioChange, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import defualt_data from '../default_data.json';
+import { Submit_device, FixInfo } from '../submitDevices';
+
+import { FirbaseServiceService } from '../firbase-service.service';
+import { DatePipe } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-submit-page',
   templateUrl: './submit-page.component.html',
-  styleUrls: ['./submit-page.component.css']
+  styleUrls: ['./submit-page.component.css'],
+  providers: [DatePipe]
 })
 
 export class SubmitPageComponent implements OnInit {
   submitForm: FormGroup;
   test: String;
   rd_select: boolean = false;
-  devices: String;
+  devices: string;
 
   loading = "";
   loading_onload = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>sending...';
   loading_none = "send";
   loading_status = false;
 
+  submitdevice: Submit_device = new Submit_device();
+  fixInfo: FixInfo = new FixInfo();
 
 
-  constructor(private router: Router, fb: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<SubmitPageComponent>) {
+  constructor(
+    private router: Router,
+    fb: FormBuilder,
+    private http: HttpClient,
+    public dialogRef: MatDialogRef<SubmitPageComponent>,
+    private firebaseService: FirbaseServiceService,
+    private datePipe: DatePipe
+  ) {
     this.submitForm = fb.group({
       rd_device: new FormControl(''),
       txt_rd: new FormControl(''),
@@ -72,22 +87,41 @@ export class SubmitPageComponent implements OnInit {
       if (data.DESCRIPTION != "") {
         if (data.IMPORTANT != "") {
           if (data.DEPARTMENT != "") {
-            this.http.post<any>(defualt_data.base_url + '/submit_devices', data).subscribe(data => {
-              if (data.res == "success") {
-                this.loading_status = false;
-                this.loading = this.loading_none;
-                window.alert("Success !")
-                this.dialogRef.close({ "status": "success" });
-              } else {
-                this.loading_status = false;
-                this.loading = this.loading_none;
-                window.alert(data.res);
-              }
-            }, (err: HttpErrorResponse) => {
-              this.loading_status = false;
-              this.loading = this.loading_none;
-              window.alert("canot submit data, please contact Administrator!")
-            });
+            this.submitdevice.u_id = localStorage.getItem("user_id");
+            this.submitdevice.u_name = localStorage.getItem("user_name");
+            this.submitdevice.department = this.submitForm.value.department;
+            this.submitdevice.device = this.devices;
+            this.submitdevice.description = this.submitForm.value.txt_des;
+            this.submitdevice.priotity = this.submitForm.value.rd_choices;
+
+            this.fixInfo.device_status = "wait for review";
+            this.fixInfo.status = "on review";
+
+            this.submitdevice.fix_info = this.fixInfo;
+            this.submitdevice.submit_date = Date.now();
+            this.submitdevice.item_status = "wait for review";
+
+            this.firebaseService.createSubmitDevice(this.submitdevice);
+
+            window.alert("Success !")
+            this.dialogRef.close({ "status": "success" });
+            // console.log(this.submitdevice);
+            // this.http.post<any>(defualt_data.base_url + '/submit_devices', data).subscribe(data => {
+            //   if (data.res == "success") {
+            //     this.loading_status = false;
+            //     this.loading = this.loading_none;
+            //     window.alert("Success !")
+            //     this.dialogRef.close({ "status": "success" });
+            //   } else {
+            //     this.loading_status = false;
+            //     this.loading = this.loading_none;
+            //     window.alert(data.res);
+            //   }
+            // }, (err: HttpErrorResponse) => {
+            //   this.loading_status = false;
+            //   this.loading = this.loading_none;
+            //   window.alert("canot submit data, please contact Administrator!")
+            // });
           } else {
             this.loading_status = false;
             this.loading = this.loading_none;

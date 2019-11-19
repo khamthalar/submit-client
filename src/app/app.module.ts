@@ -24,6 +24,7 @@ import { AdminDesboardComponent } from './admin-desboard/admin-desboard.componen
 import {AngularFireModule} from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 
 
@@ -37,7 +38,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     MainNavComponent,
     SubmitPageComponent,
     AdminNavComponent,
-    AdminDesboardComponent
+    AdminDesboardComponent,
+    DateAgoPipe
     
   ],
   imports: [

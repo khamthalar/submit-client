@@ -4,11 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth.guard';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
+import { AdminDesboardComponent } from './admin-desboard/admin-desboard.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
-  {path:'submit',component:SubmitPageComponent}
+  {path:'submit',component:SubmitPageComponent},
+  {path:'desboard',component:AdminDesboardComponent}
 ];
 
 @NgModule({

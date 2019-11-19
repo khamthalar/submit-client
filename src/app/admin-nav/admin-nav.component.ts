@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material';
+
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-nav',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminNavComponent implements OnInit {
 
-  constructor() { }
+  username:string;
 
+  @Output() logOut_Clicked:EventEmitter<any>=new EventEmitter();
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+  constructor(private breakpointObserver: BreakpointObserver,public dialog: MatDialog) {}
+  logout(){
+    this.logOut_Clicked.emit();
+  }
   ngOnInit() {
+    this.username = localStorage.getItem('user_name');
   }
 
 }
