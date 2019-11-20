@@ -17,15 +17,32 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="body-content">
-    <mat-toolbar class="nav">
-      <div class="title-body-content">
-        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-        <span>ໜ້າຫຼັກ</span>
-      </div>
-    </mat-toolbar>
+    <div class="nav-background">
+      <mat-toolbar class="nav">
+        <div class="title-body-content">
+          <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <span>ໜ້າຫຼັກ</span>
+        </div>
+        <div class="nav-menu">
+          <!-- <div class="nav-user">
+            <i class="fa fa-user-circle" aria-hidden="true" style="font-size:30px;"></i>
+            <p style="margin-bottom: 0; margin-top:-7px; font-size:12px;">{{username}}</p>
+          </div> -->
+          <div mat-button [matMenuTriggerFor]="menu" class="nav-user">
+              <i class="fa fa-user-circle" aria-hidden="true" style="font-size:30px;"></i>
+              <p style="margin-bottom: 0; margin-top:-7px; font-size:12px;">{{username}}</p>
+          </div>
+          <mat-menu #menu="matMenu">
+            <div mat-menu-item>ຂໍ້ມູນສ່ວນຕົວ</div>
+            <div mat-menu-item>ຕັ້ງຄ່າ</div>
+            <div mat-menu-item>ອອກຈາກລະບົບ</div>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+    </div>
     <ng-content></ng-content>
     <!-- Add Content Here -->
   </mat-sidenav-content>
