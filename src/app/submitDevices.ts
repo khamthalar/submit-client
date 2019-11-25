@@ -46,8 +46,10 @@ export class userLogin{
     key:string;
     name:string;
     surname:string;
+    fullname:string;
     contactInfo:userContact;
     status:string;
     username:string;
     password:string;
+    active:number;
 }

@@ -25,6 +25,9 @@ import {AngularFireModule} from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { AdminSettingComponent } from './admin-setting/admin-setting.component';
+import { UserSettingDialogComponent } from './dialogs/user-setting-dialog/user-setting-dialog.component';
+import { FixPageComponent } from './fix-page/fix-page.component';
 
 
 
@@ -39,7 +42,10 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     SubmitPageComponent,
     AdminNavComponent,
     AdminDesboardComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    AdminSettingComponent,
+    UserSettingDialogComponent,
+    FixPageComponent
     
   ],
   imports: [
@@ -56,6 +62,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [AuthService,AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[AdminSettingComponent,UserSettingDialogComponent,FixPageComponent]
 })
 export class AppModule { }

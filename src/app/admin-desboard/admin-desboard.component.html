@@ -1,7 +1,12 @@
-<app-admin-nav (logOut_Clicked)="logout()">
+<app-admin-nav #mainNav (logOut_Clicked)="logout()" (refresh_Clicked)="refreshData()">
     <div class="content">
+        <div class="loading" [@divstate]="divstate">
+            <img src="assets/images/loading-process.svg" class="img-responsive rotate" alt="Image"
+                style="width: 30px; margin-top: 5px;">
+        </div>
         <ul class="list-group">
-            <li class="list-group-item device-item" *ngFor="let item of deviceList">
+            <li class="list-group-item device-item" *ngFor="let item of deviceList" (click)="showFixPage(item)">
+
                 <div class="item-ico">
                     <ng-template [ngIf]="item.device=='Computer'">
                         <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 60px;">
@@ -25,8 +30,6 @@
                         <span style="margin-top: 5px;">{{item.submit_date | dateAgo}}</span>
                     </div>
                 </div>
-
-
             </li>
         </ul>
     </div>

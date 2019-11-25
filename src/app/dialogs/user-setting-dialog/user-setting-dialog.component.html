@@ -1,0 +1,20 @@
+<div class="content">
+  <div class="user">
+      <i class="fa fa-user-circle" aria-hidden="true" style="font-size:50px; color:  #A52A2A; margin-bottom: 5px;"></i>
+      <p style="margin-bottom: 0; margin-top:-7px; font-size:15px;color:  #A52A2A;">{{data.name}} {{data.surname}}</p>
+  </div>
+  <div>
+      <mat-checkbox [(ngModel)]="checked">ຕັ້ງເປັນ {{status}}</mat-checkbox>
+  </div>
+  
+  <button (click)="close('save')" class="btn btn-success">
+      <img src="assets/images/save-icon.svg" class="img-responsive" alt="Image" style="width: 20px;">
+    ບັນທຶກ</button>
+    <button class="btn btn-danger" (click)="close('delete')">
+        <img src="assets/images/recycle-bin.svg" class="img-responsive" alt="Image" style="width: 20px;">
+      ລຶບ</button>
+      <button class="btn btn-danger" (click)="close('cancel')">
+          <img src="assets/images/error.svg" class="img-responsive" alt="Image" style="width: 20px;">
+        ຍົກເລີກ</button>
+</div>
+

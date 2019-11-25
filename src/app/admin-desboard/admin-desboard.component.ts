@@ -1,18 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { FirbaseServiceService } from '../firbase-service.service';
 import {map} from 'rxjs/operators';
+import { AdminNavComponent } from '../admin-nav/admin-nav.component';
+import { trigger,state,style,animate,transition} from '@angular/animations';
+import { FixPageComponent } from '../fix-page/fix-page.component';
 
 @Component({
   selector: 'app-admin-desboard',
   templateUrl: './admin-desboard.component.html',
-  styleUrls: ['./admin-desboard.component.css']
+  styleUrls: ['./admin-desboard.component.css'],
+  animations:[
+    trigger('divstate',[
+      state('show',style({
+        opacity:1,
+        display:'block'
+      })),
+      state('hide',style({
+        opacity:0,
+        display:'none'
+      })),
+      transition('show=>hide',animate('200ms ease-out')),
+      transition('hide=>show',animate('200ms ease-in'))
+    ])
+    // trigger('secoundState',[
+    //   state('show',style({
+    //     height:100,
+    //     opacity:1
+    //   })),
+    //   state('hide',style({
+    //     height:0,
+    //     opacity:0
+    //   })),
+    //   transition('show=>hide',animate('300ms ease-out')),
+    //   transition('hide=>show',animate('300ms ease-in'))
+    // ])
+  ]
 })
 export class AdminDesboardComponent implements OnInit {
 
+  @ViewChild("mainNav") mainnav:AdminNavComponent;
   deviceList:any;
+  divstate = 'show';
   constructor(
     private auth:AuthService,
     private router:Router,
@@ -23,6 +54,7 @@ export class AdminDesboardComponent implements OnInit {
   ngOnInit() {
     this.getDeviceList();
   }
+
   logout(){
     this.auth.setLogin(false);
     localStorage.setItem('user_name', "");
@@ -37,7 +69,22 @@ export class AdminDesboardComponent implements OnInit {
       })))
     ).subscribe(devicelist=>{
       this.deviceList = devicelist;
+      this.mainnav.spin = false;
+      this.divstate = 'hide';
     })
   }
 
+  refreshData(){
+    this.divstate = 'show';
+    this.deviceList=null;
+    this.getDeviceList();
+  }
+  showFixPage(item){
+    const dialogRef = this.dialog.open(FixPageComponent,{ disableClose: true,data: item});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status=="success"){
+        // this.updateData();
+      }
+    });
+  }
 }

@@ -27,18 +27,20 @@
           <span>ໜ້າຫຼັກ</span>
         </div>
         <div class="nav-menu">
-          <!-- <div class="nav-user">
-            <i class="fa fa-user-circle" aria-hidden="true" style="font-size:30px;"></i>
-            <p style="margin-bottom: 0; margin-top:-7px; font-size:12px;">{{username}}</p>
-          </div> -->
-          <div mat-button [matMenuTriggerFor]="menu" class="nav-user">
+            <div class="menu-refresh" (click)="refresh()">
+                <img src="assets/images/refresh-page-option.svg" class="img-responsive" alt="Image" style="width: 33px;" [ngClass]="{rotate: spin}">
+            </div>
+          <div class="menu-setting" (click)="openDialog()">
+              <img src="assets/images/global-settings.svg" class="img-responsive" alt="Image" style="width: 40px;">
+          </div>
+          <div mat-button [matMenuTriggerFor]="menu" class="nav-user-1">
               <i class="fa fa-user-circle" aria-hidden="true" style="font-size:30px;"></i>
               <p style="margin-bottom: 0; margin-top:-7px; font-size:12px;">{{username}}</p>
           </div>
           <mat-menu #menu="matMenu">
             <div mat-menu-item>ຂໍ້ມູນສ່ວນຕົວ</div>
-            <div mat-menu-item>ຕັ້ງຄ່າ</div>
-            <div mat-menu-item>ອອກຈາກລະບົບ</div>
+            <div mat-menu-item>ປ່ຽນລະຫັດຜ່ານ</div>
+            <div mat-menu-item (click)="logout()">ອອກຈາກລະບົບ</div>
           </mat-menu>
         </div>
       </mat-toolbar>

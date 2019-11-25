@@ -33,4 +33,14 @@ export class FirbaseServiceService {
     // return this.db.list(this.userPath,ref=>ref.orderByChild('username').equalTo())
     return this.db.list(this.userPath,ref=>ref.orderByChild('username').equalTo(username));
   }
+  getUserList():AngularFireList<userLogin>{
+    return this.submitUserRef;
+  }
+  getActiveUser():AngularFireList<userLogin>{
+    return this.db.list(this.userPath,ref=>ref.orderByChild('active').equalTo(1));
+  }
+
+  setUserStatus(key:string,status:string,active:number){
+    this.db.object<userLogin>(this.userPath+'/'+key).update({'status':status,'active':active});
+  }
 }

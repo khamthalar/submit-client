@@ -1,0 +1,56 @@
+<div class="nav-bar">
+    <div class="title-body-content">
+        <span class="lb">ຕັ້ງຄ່າ</span>
+    </div>
+    <img class="close_icon" src="assets/images/delete.svg" (click)="close()">
+</div>
+<div class="frm-title" (click)="newUser()">
+        <img src="assets/images/add-group.svg" class="img-responsive" alt="Image" style="width: 20px;">
+        <span style="color: #A52A2A;margin-left: 5px;">ເພີ່ມຜູ້ໃຊ້ງານະບົບ</span>
+        
+</div>
+<div class="containner">
+    <div class="frm-new-user" [@frmState]="frmState">
+        <div class="frm-user">
+            <mat-form-field class="form-field" [floatLabel]="'never'">
+                <input matInput placeholder="ຊື່..." [(ngModel)]="user.name">
+            </mat-form-field>
+            <mat-form-field class="form-field" [floatLabel]="'never'" style="margin-left: 5px;">
+                <input matInput placeholder="ນາມສະກຸນ..." [(ngModel)]="user.surname">
+            </mat-form-field><br>
+            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
+                <input type="email" matInput placeholder="example@email.com" [(ngModel)]="usercontact.email">
+            </mat-form-field><br>
+            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
+                <input matInput placeholder="ເບີໂທລະສັບ..." [(ngModel)]="usercontact.phonenumber">
+            </mat-form-field><br>
+            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
+                <input matInput placeholder="ຊື່ເຂົ້າໃຊ້ລະບົບ..." [(ngModel)]="user.username">
+            </mat-form-field><br>
+            <mat-form-field class="form-field" [floatLabel]="'never'">
+                <input type="password" matInput placeholder="ລະຫັດຜ່ານ" [(ngModel)]="passwordText">
+            </mat-form-field>
+            <mat-form-field class="form-field" [floatLabel]="'never'" style="margin-left: 5px;">
+                <input type="password" matInput placeholder="ຢືນຢັນລະຫັດຜ່ານ" [(ngModel)]="confirmpassword">
+            </mat-form-field><br>
+            <button class="frm-btn" mat-flat-button color="primary" (click)="submitUser()">ບັນທຶກ</button>
+            <button class="frm-btn" mat-flat-button (click)="cancelSubmit()"
+                style="background-color:#D32F2F;color: white;">ຍົກເລີກ</button>
+        </div>
+    </div>
+    <div class="body-content">
+        <label id="radio-group-label" style="background-color:white;">ຜູ້ໃຊ້ງານລະບົບ</label>
+        <input type="text">
+        <div class="frame">
+            <div class="users" *ngFor="let item of userList" (click)="userSetting(item.key,item.status,item.name,item.surname)">
+                <div class="item-ico">
+                    <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                </div>
+                <div class="item-des">
+                    <div class="userFullname">{{item.name}} {{item.surname}}</div>
+                    <div class="discription">{{item.status}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
