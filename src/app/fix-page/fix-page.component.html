@@ -1,5 +1,39 @@
-<p>
-  fix-page works!
-</p>
-<pre>{{data | json}}</pre>
-<button (click)="close()">close</button>
+<div class="nav-bar">
+  <div class="title-body-content">
+    <span class="lb">Item Info</span>
+  </div>
+  <img class="close_icon" src="assets/images/delete.svg" (click)="close()">
+</div>
+<div class="content">
+  <div class="image">
+    <div *ngIf="data.device=='Computer'">
+      <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+    <div *ngIf="data.device=='Internet'">
+      <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+    <div *ngIf="data.device=='Printer'">
+      <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+    <div *ngIf="data.device!='Computer' && data.device!='Internet' && data.device!='Printer'">
+      <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+  </div>
+  <div class="description">ອາການ: {{data.description}} <span style="color: red;"
+      *ngIf="data.priotity==1">(ສ້ອມແປງດ່ວນ)</span></div>
+  <div class="em">ຜູ້ແຈ້ງ: {{data.u_name}}, ພະແນກ {{data.department}}</div>
+  <div class="item-box">
+    <button type="button" class="btn-cus"><i class="fa fa-plus"></i> ຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ</button>
+    <textarea rows="3" class="item-status" id="item-status" [disabled]="txtmessage_status"></textarea>
+  </div>
+  <div class="item-box">
+    <button type="button" class="btn-cus"><i class="fa fa-plus"></i> ສາເຫດ</button>
+    <textarea rows="3" class="item-status" id="item-status" [disabled]="txtdevice_disabled"></textarea>
+  </div>
+  <button type="button" class="btn btn-success">ວິທີສ້ອມແປງ</button>
+  <div class="repair-list">
+
+  </div>
+  <!-- <pre>{{data | json}}</pre> -->
+  <button (click)="close()">close</button>
+</div>

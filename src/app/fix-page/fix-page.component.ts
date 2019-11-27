@@ -8,6 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class FixPageComponent implements OnInit {
 
+  
+  txtmessage_status=true;
+  txtdevice_disabled=true;
   constructor(public dialogRef: MatDialogRef<FixPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
