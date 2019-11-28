@@ -23,7 +23,7 @@ export class FirbaseServiceService {
   }
 
   getSubmitDeviceList():AngularFireList<Submit_device>{
-    return this.submitDeviceRef;
+    return this.db.list(this.devicePath,ref=>ref.orderByChild('success').equalTo(0));
   }
   createUser(user:userLogin){
     this.submitUserRef.push(user);
@@ -42,5 +42,8 @@ export class FirbaseServiceService {
 
   setUserStatus(key:string,status:string,active:number){
     this.db.object<userLogin>(this.userPath+'/'+key).update({'status':status,'active':active});
+  }
+  updateSubmitItem(key:string,data:any){
+    this.db.object<Submit_device>(this.devicePath+'/'+key).update(data);
   }
 }

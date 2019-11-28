@@ -95,11 +95,12 @@ export class SubmitPageComponent implements OnInit {
             this.submitdevice.priotity = this.submitForm.value.rd_choices;
 
             this.fixInfo.device_status = "wait for review";
-            this.fixInfo.status = "on review";
+            this.fixInfo.status = "ລໍຖ້າສ້ອມແປງ";
 
             this.submitdevice.fix_info = this.fixInfo;
             this.submitdevice.submit_date = Date.now();
             this.submitdevice.item_status = "wait for review";
+            this.submitdevice.success = 0;
 
             this.firebaseService.createSubmitDevice(this.submitdevice);
 

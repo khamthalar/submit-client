@@ -84,6 +84,8 @@ export class LoginComponent implements OnInit {
           }
           localStorage.setItem('user_name', userDetail[0].name+" "+userDetail[0].surname);
           localStorage.setItem('user_id', userDetail[0].key);
+          localStorage.setItem('userPhonenumber',userDetail[0].contactInfo.phonenumber);
+          localStorage.setItem('userEmailAddress',userDetail[0].contactInfo.email);
           this.user = userDetail[0];
         } else {
           window.alert("Incorrect password");

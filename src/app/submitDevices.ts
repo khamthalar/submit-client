@@ -36,7 +36,12 @@ export class Submit_device {
     fix_info: FixInfo;
     submit_date: number;
     item_status: string;
+    success:number;
 }
+
+
+
+
 export class userContact{
     phonenumber:string;
     email:string;

@@ -46,15 +46,13 @@ input[type="text"], textarea {
 .item-box{
     position: relative;
 }
-.label{
-    position: absolute;
-    z-index: 999;
-    background-color: white;
-}
+
 .content{
     padding:10px;
 }
 .btn-cus{
+    outline: none;
+    box-shadow: none !important;
     position: absolute;
     z-index: 999;
     background-color: brown;
@@ -71,5 +69,47 @@ input[type="text"], textarea {
     background-color: brown;
 }
 textarea:disabled{
-    background-color: whitesmoke !important;
+    background-color: rgb(230, 230, 230) !important;
+}
+.bottom-btn{
+    text-align: center;
+}
+.btn-ok, .btn-apply{
+    width: 70px;
+    text-align: center;
+    border: none;
+    padding: 5px 0px 5px 0px;
+    background-color: green;
+    color: white;
+    margin: 3px;
+    border-radius: 5px;
+}
+.btn-apply:disabled{
+    background-color: rgb(100, 172, 100);
+}
+.fix-status{
+    display: flex;
+    margin-bottom: 10px;
+}
+.rd{
+    display: flex;
+    align-items:center;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.btn-rd{
+    width: 17px;
+    height: 17px;
+    border-radius: 15px;
+    border: 2px solid brown;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+
+}
+.rd-selected{
+    width: 11px;
+    height: 11px;
+    background-color: brown;
+    border-radius: 10px;
 }
