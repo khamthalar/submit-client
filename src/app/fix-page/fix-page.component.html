@@ -22,20 +22,29 @@
   <div class="description">ອາການ: {{data.description}} <span style="color: red;"
       *ngIf="data.priotity==1">(ສ້ອມແປງດ່ວນ)</span></div>
   <div class="em">ຜູ້ແຈ້ງ: {{data.u_name}}, ພະແນກ {{data.department}}</div>
+  <div class="fix_status">ສະຖານະ: {{data.fix_info.status}}</div>
+  <div class="fix_success">
+    <div class="cb_success" (click)="cb_click()">
+      <img src="assets/images/checked.svg" class="img-responsive" alt="Image" style="width: 20px;"
+      [ngClass]="{'hide': cb_unchecked}">
+      <div class="unCkeck-ico" [ngClass]="{'hide': !cb_unchecked}"></div>
+      <div class="cb_label" style="margin-left: 3px;">ສ້ອມແປງສຳເລັດ</div>
+    </div>
+  </div>
   <div class="fix-status">
-    <div class="rd" (click)="rd_selected('rd1')">
+    <div class="rd" (click)="rd_selected('ລໍຖ້າສ້ອມແປງ')">
       <div class="btn-rd">
         <div [ngClass]="{'rd-selected':rd1}"></div>
       </div>
       <div>ລໍຖ້າສ້ອມແປງ</div>
     </div>
-    <div class="rd" (click)="rd_selected('rd2')">
+    <div class="rd" (click)="rd_selected('ກຳລັງສ້ອມແປງ')">
       <div class="btn-rd">
         <div [ngClass]="{'rd-selected': rd2}"></div>
       </div>
       <div>ກຳລັງສ້ອມແປງ</div>
     </div>
-    <div class="rd" (click)="rd_selected('rd3')">
+    <div class="rd" (click)="rd_selected('ສ້ອມແປງແລ້ວ')">
       <div class="btn-rd">
         <div [ngClass]="{'rd-selected': rd3}"></div>
       </div>
@@ -50,7 +59,8 @@
   </div>
   <div class="item-box">
     <button type="button" class="btn-cus" (click)="editDevice_status()"><i class="fa fa-plus"></i> ສາເຫດ</button>
-    <textarea #txtDevice rows="3" class="item-status" id="item-status" (keyup)="onEdit()" [(ngModel)]="deviceStatusText">{{deviceStatusText}}</textarea>
+    <textarea #txtDevice rows="3" class="item-status" id="item-status" (keyup)="onEdit()"
+      [(ngModel)]="deviceStatusText">{{deviceStatusText}}</textarea>
   </div>
   <button type="button" class="btn btn-success">ວິທີສ້ອມແປງ</button>
   <div class="repair-list">
@@ -58,7 +68,7 @@
   </div>
   <!-- <pre>{{data | json}}</pre> -->
   <div class="bottom-btn">
-    <button (click)="close()" class="btn-ok">ok</button>
+    <button (click)="submitData()" class="btn-ok">ok</button>
     <button #btnApply (click)="apply()" class="btn-apply">apply</button>
   </div>
 </div>

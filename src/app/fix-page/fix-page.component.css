@@ -113,3 +113,18 @@ textarea:disabled{
     background-color: brown;
     border-radius: 10px;
 }
+.unCkeck-ico{
+    width: 20px;
+    height: 20px;
+    border:2px solid green;
+    border-radius: 5px;
+}
+
+.cb_success{
+    /* justify-content:center; */
+    align-items:center;
+    display: flex;
+}
+.hide{
+    display: none;
+}

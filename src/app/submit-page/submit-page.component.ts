@@ -96,6 +96,8 @@ export class SubmitPageComponent implements OnInit {
 
             this.fixInfo.device_status = "wait for review";
             this.fixInfo.status = "ລໍຖ້າສ້ອມແປງ";
+            this.fixInfo.em_log = [];
+            this.fixInfo.fix_log = [];
 
             this.submitdevice.fix_info = this.fixInfo;
             this.submitdevice.submit_date = Date.now();
