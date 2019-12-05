@@ -20,16 +20,16 @@ export class FixPageComponent implements OnInit {
   fix_info: FixInfo = new FixInfo();
   em_log: EmLog = new EmLog();
   usercontact: ContactInfo = new ContactInfo();
-  selected_rd ="";
-  default_rd = "";
+  // selected_rd ="";
+  // default_rd = "";
   cb_unchecked = true;
 
   statusText: string;
   deviceStatusText: string;
 
-  rd1 = false;
-  rd2 = false;
-  rd3 = false;
+  // rd1 = false;
+  // rd2 = false;
+  // rd3 = false;
 
   @ViewChild('txtStatus') txtstatus: ElementRef;
   @ViewChild('txtDevice') txtdevice: ElementRef;
@@ -59,13 +59,13 @@ export class FixPageComponent implements OnInit {
     this.statusText = this.data.item_status;
     this.deviceStatusText = this.data.fix_info.device_status;
 
-    if (this.data.fix_info.status == "ລໍຖ້າສ້ອມແປງ") {
-      this.default_rd = "ລໍຖ້າສ້ອມແປງ";
-      this.rd_selected("ລໍຖ້າສ້ອມແປງ");
-    } else {
-      this.default_rd = "ກຳລັງສ້ອມແປງ";
-      this.rd_selected("ກຳລັງສ້ອມແປງ");
-    }
+    // if (this.data.fix_info.status == "ລໍຖ້າສ້ອມແປງ") {
+    //   this.default_rd = "ລໍຖ້າສ້ອມແປງ";
+    //   this.rd_selected("ລໍຖ້າສ້ອມແປງ");
+    // } else {
+    //   this.default_rd = "ກຳລັງສ້ອມແປງ";
+    //   this.rd_selected("ກຳລັງສ້ອມແປງ");
+    // }
   }
   cb_click(){
     this.cb_unchecked = !this.cb_unchecked;
@@ -79,7 +79,7 @@ export class FixPageComponent implements OnInit {
     this.txtdevice.nativeElement.focus();
   }
   onEdit() {
-    if(this.default_rd !=this.selected_rd || this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
+    if(this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
       this.btnapply.nativeElement.disabled = false;
     }else{
       this.btnapply.nativeElement.disabled = true;
@@ -95,35 +95,35 @@ export class FixPageComponent implements OnInit {
 
     // this.firebaseService.updateSubmitItem(this.data.key,{"description":"ເນັດບໍ່ໄດ້"});
   }
-  rd_selected(rd: string) {
-    this.rd1 = false;
-    this.rd2 = false;
-    this.rd3 = false;
-    if (rd == "ລໍຖ້າສ້ອມແປງ") {
-      this.rd1 = true;
-      this.selected_rd = "ລໍຖ້າສ້ອມແປງ";
-    } else if (rd == "ກຳລັງສ້ອມແປງ") {
-      this.rd2 = true;
-      this.selected_rd = "ກຳລັງສ້ອມແປງ";
-    } else if (rd == "ສ້ອມແປງແລ້ວ") {
-      this.rd3 = true;
-      this.selected_rd = "ສ້ອມແປງແລ້ວ";
-    }
-    if(this.default_rd !=rd || this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
-      this.btnapply.nativeElement.disabled = false;
-    }else{
-      this.btnapply.nativeElement.disabled = true;
-    }
-  }
+  // rd_selected(rd: string) {
+  //   this.rd1 = false;
+  //   this.rd2 = false;
+  //   this.rd3 = false;
+  //   if (rd == "ລໍຖ້າສ້ອມແປງ") {
+  //     this.rd1 = true;
+  //     this.selected_rd = "ລໍຖ້າສ້ອມແປງ";
+  //   } else if (rd == "ກຳລັງສ້ອມແປງ") {
+  //     this.rd2 = true;
+  //     this.selected_rd = "ກຳລັງສ້ອມແປງ";
+  //   } else if (rd == "ສ້ອມແປງແລ້ວ") {
+  //     this.rd3 = true;
+  //     this.selected_rd = "ສ້ອມແປງແລ້ວ";
+  //   }
+  //   if(this.default_rd !=rd || this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
+  //     this.btnapply.nativeElement.disabled = false;
+  //   }else{
+  //     this.btnapply.nativeElement.disabled = true;
+  //   }
+  // }
 
   submitData(){
-    // if(this.default_rd !=this.selected_rd || this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
-    //   if(this.statusText!="wait for review"){
-    //     this.checkEmLog();
-    //   }
-    // }else{
-    //   // this.dialogRef.close();
-    // }
+    if(this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
+      if(this.statusText!="wait for review"){
+        this.checkEmLog();
+      }
+    }else{
+      // this.dialogRef.close();
+    }
     // console.log(this.fix_info);
   }
   checkEmLog(){

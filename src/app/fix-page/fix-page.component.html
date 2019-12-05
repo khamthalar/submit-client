@@ -23,15 +23,7 @@
       *ngIf="data.priotity==1">(ສ້ອມແປງດ່ວນ)</span></div>
   <div class="em">ຜູ້ແຈ້ງ: {{data.u_name}}, ພະແນກ {{data.department}}</div>
   <div class="fix_status">ສະຖານະ: {{data.fix_info.status}}</div>
-  <div class="fix_success">
-    <div class="cb_success" (click)="cb_click()">
-      <img src="assets/images/checked.svg" class="img-responsive" alt="Image" style="width: 20px;"
-      [ngClass]="{'hide': cb_unchecked}">
-      <div class="unCkeck-ico" [ngClass]="{'hide': !cb_unchecked}"></div>
-      <div class="cb_label" style="margin-left: 3px;">ສ້ອມແປງສຳເລັດ</div>
-    </div>
-  </div>
-  <div class="fix-status">
+  <!-- <div class="fix-status">
     <div class="rd" (click)="rd_selected('ລໍຖ້າສ້ອມແປງ')">
       <div class="btn-rd">
         <div [ngClass]="{'rd-selected':rd1}"></div>
@@ -50,7 +42,7 @@
       </div>
       <div>ສ້ອມແປງແລ້ວ</div>
     </div>
-  </div>
+  </div> -->
   <div class="item-box">
     <button type="button" class="btn-cus" (click)="edit_item_status()"><i class="fa fa-plus"></i>
       ຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ</button>
@@ -63,12 +55,20 @@
       [(ngModel)]="deviceStatusText">{{deviceStatusText}}</textarea>
   </div>
   <button type="button" class="btn btn-success">ວິທີສ້ອມແປງ</button>
+  <div class="fix_success">
+    <div class="cb_success" (click)="cb_click()">
+      <img src="assets/images/checked.svg" class="img-responsive" alt="Image" style="width: 20px;"
+      [ngClass]="{'hide': cb_unchecked}">
+      <div class="unCkeck-ico" [ngClass]="{'hide': !cb_unchecked}"></div>
+      <div class="cb_label noselect" style="margin-left: 3px;">ສ້ອມແປງສຳເລັດ</div>
+    </div>
+  </div>
   <div class="repair-list">
 
   </div>
   <!-- <pre>{{data | json}}</pre> -->
   <div class="bottom-btn">
-    <button (click)="submitData()" class="btn-ok">ok</button>
+    <button (click)="btnOk_click()" class="btn-ok">ok</button>
     <button #btnApply (click)="apply()" class="btn-apply">apply</button>
   </div>
 </div>
