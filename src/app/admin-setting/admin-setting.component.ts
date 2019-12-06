@@ -51,10 +51,14 @@ export class AdminSettingComponent implements OnInit {
     this.frmState = 'hide';
   }
   getuserList() {
-    this.firebaseService.getActiveUser().snapshotChanges().pipe(
-      map(changes => changes.map(c => ({
-        key: c.payload.key, ...c.payload.val()
-      })))
+    this.firebaseService.getActiveUsers().snapshotChanges().pipe(
+      map(user=>{
+        return user.map(u=>{
+          const data = u.payload.doc.data() as userLogin
+          data.key = u.payload.doc.id;
+          return data;
+        });
+      })
     ).subscribe(userList => {
       this.userList = userList;
     })
@@ -64,9 +68,9 @@ export class AdminSettingComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result.action=='delete'){
         // let data = {"key":key,"status":result.status,"active":0}
-        this.firebaseService.setUserStatus(key,result.status,0);
+        this.firebaseService.changeUserStatus(key,result.status,0);
       }else if(result.action=='save'){
-        this.firebaseService.setUserStatus(key,result.status,1);
+        this.firebaseService.changeUserStatus(key,result.status,1);
       }
       // console.log(result);
     });
@@ -81,12 +85,14 @@ export class AdminSettingComponent implements OnInit {
         if (this.user.username != undefined) {
           if (this.passwordText!= "") {
             if (this.passwordText == this.confirmpassword) {
-              this.firebaseService.getUserDetial(this.user.username).snapshotChanges().pipe(
-                map(changes => changes.map(
-                  c => ({
-                    key: c.payload.key, ...c.payload.val()
-                  })
-                ))
+              this.firebaseService.getUser(this.user.username).snapshotChanges().pipe(
+                map(user=>{
+                  return user.map(u=>{
+                    const data = u.payload.doc.data() as userLogin
+                    data.key = u.payload.doc.id;
+                    return data;
+                  });
+                })
               ).subscribe(userDetail => {
                 if (userDetail.length == 0) {
                   this.user.status = "employee";
@@ -94,7 +100,7 @@ export class AdminSettingComponent implements OnInit {
                   this.user.contactInfo = this.usercontact;
                   // console.log(this.user);
                   this.user.active = 1;
-                  this.firebaseService.createUser(this.user);
+                  this.firebaseService.createUsers(this.user);
                   this.user = new userLogin();
                   this.usercontact = new userContact();
                   this.passwordText = "";

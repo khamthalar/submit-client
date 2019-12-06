@@ -104,7 +104,8 @@ export class SubmitPageComponent implements OnInit {
             this.submitdevice.item_status = "wait for review";
             this.submitdevice.success = 0;
 
-            this.firebaseService.createSubmitDevice(this.submitdevice);
+            // this.firebaseService.createSubmitDevice(this.submitdevice);
+            this.firebaseService.createSubmitDevices(this.submitdevice);
 
             window.alert("Success !")
             this.dialogRef.close({ "status": "success" });

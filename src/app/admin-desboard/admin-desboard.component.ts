@@ -7,6 +7,7 @@ import {map} from 'rxjs/operators';
 import { AdminNavComponent } from '../admin-nav/admin-nav.component';
 import { trigger,state,style,animate,transition} from '@angular/animations';
 import { FixPageComponent } from '../fix-page/fix-page.component';
+import { Submit_device } from '../submitDevices';
 
 @Component({
   selector: 'app-admin-desboard',
@@ -63,10 +64,14 @@ export class AdminDesboardComponent implements OnInit {
   }
 
   getDeviceList(){
-    this.firebaseService.getSubmitDeviceList().snapshotChanges().pipe(
-      map(changes=>changes.map(c=>({
-        key:c.payload.key,...c.payload.val()
-      })))
+    this.firebaseService.getSubmitDevice_list().snapshotChanges().pipe(
+      map(device=>{
+        return device.map(d=>{
+          const data = d.payload.doc.data() as Submit_device
+          data.key = d.payload.doc.id;
+          return data;
+        });
+      })
     ).subscribe(devicelist=>{
       this.deviceList = devicelist;
       this.mainnav.spin = false;

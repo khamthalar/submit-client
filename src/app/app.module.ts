@@ -28,6 +28,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { AdminSettingComponent } from './admin-setting/admin-setting.component';
 import { UserSettingDialogComponent } from './dialogs/user-setting-dialog/user-setting-dialog.component';
 import { FixPageComponent } from './fix-page/fix-page.component';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 
@@ -59,6 +60,7 @@ import { FixPageComponent } from './fix-page/fix-page.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [AuthService,AuthGuard],
