@@ -68,7 +68,7 @@ export class FirbaseServiceService {
   }
 
   getSubmitDevice_list(){
-    return this.ags.collection("DevicesSubmitted",ref=>ref.where("success","==",0));
+    return this.ags.collection("DevicesSubmitted",ref=>ref.where('success','==',0).orderBy('priotity','desc'));
   }
 
   
