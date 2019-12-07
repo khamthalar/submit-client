@@ -9,6 +9,7 @@ import default_data from '../default_data.json';
 import { FirbaseServiceService } from '../firbase-service.service';
 
 import {map} from 'rxjs/operators';
+import { Submit_device } from '../submitDevices';
 
 @Component({
   selector: 'app-home',
@@ -64,10 +65,14 @@ export class HomeComponent implements OnInit {
   }
 
   getDeviceList(){
-    this.firebaseService.getSubmitDeviceList().snapshotChanges().pipe(
-      map(changes=>changes.map(c=>({
-        key:c.payload.key,...c.payload.val()
-      })))
+    this.firebaseService.getSubmitDevice_list().snapshotChanges().pipe(
+      map(device=>{
+        return device.map(d=>{
+          const data = d.payload.doc.data() as Submit_device
+          data.key = d.payload.doc.id;
+          return data;
+        });
+      })
     ).subscribe(devicelist=>{
       this.deviceList = devicelist;
     })

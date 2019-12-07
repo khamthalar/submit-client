@@ -20,29 +20,29 @@ export class FirbaseServiceService {
     this.submitDeviceRef = db.list(this.devicePath);
     this.submitUserRef = db.list(this.userPath);
   }
-  createSubmitDevice(device:Submit_device){
-    this.submitDeviceRef.push(device);
-  }
+  // createSubmitDevice(device:Submit_device){
+  //   this.submitDeviceRef.push(device);
+  // }
 
-  getSubmitDeviceList():AngularFireList<Submit_device>{
-    return this.db.list(this.devicePath,ref=>ref.orderByChild('success').equalTo(0));
-  }
-  createUser(user:userLogin){
-    this.submitUserRef.push(user);
-  }
-  getUserDetial(username:string):AngularFireList<userLogin>{
-    return this.db.list(this.userPath,ref=>ref.orderByChild('username').equalTo(username));
-  }
-  getUserList():AngularFireList<userLogin>{
-    return this.submitUserRef;
-  }
-  getActiveUser():AngularFireList<userLogin>{
-    return this.db.list(this.userPath,ref=>ref.orderByChild('active').equalTo(1));
-  }
+  // getSubmitDeviceList():AngularFireList<Submit_device>{
+  //   return this.db.list(this.devicePath,ref=>ref.orderByChild('success').equalTo(0));
+  // }
+  // createUser(user:userLogin){
+  //   this.submitUserRef.push(user);
+  // }
+  // getUserDetial(username:string):AngularFireList<userLogin>{
+  //   return this.db.list(this.userPath,ref=>ref.orderByChild('username').equalTo(username));
+  // }
+  // getUserList():AngularFireList<userLogin>{
+  //   return this.submitUserRef;
+  // }
+  // getActiveUser():AngularFireList<userLogin>{
+  //   return this.db.list(this.userPath,ref=>ref.orderByChild('active').equalTo(1));
+  // }
 
-  setUserStatus(key:string,status:string,active:number){
-    this.db.object<userLogin>(this.userPath+'/'+key).update({'status':status,'active':active});
-  }
+  // setUserStatus(key:string,status:string,active:number){
+  //   this.db.object<userLogin>(this.userPath+'/'+key).update({'status':status,'active':active});
+  // }
   updateSubmitItem(key:string,data:any){
     this.db.object<Submit_device>(this.devicePath+'/'+key).update(data);
   }

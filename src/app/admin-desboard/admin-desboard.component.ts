@@ -92,4 +92,7 @@ export class AdminDesboardComponent implements OnInit {
       }
     });
   }
+  log_clicked(){
+    window.alert("test");
+  }
 }

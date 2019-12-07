@@ -9,22 +9,27 @@ export class ContactInfo {
 export class EmLog {
     em_id: string;
     em_name: string;
-    contact_info: ContactInfo;
+    action:string;
+    issus_time:number;
 }
 
-export class FixLog {
+export class Fixnote {
     description: string;
-    start_time:Date;
-    end_time: Date;
+    start_time:number;
+    end_time: number;
 }
 
 export class FixInfo {
     status: string;
     em_log: EmLog[];
     device_status: string;
-    fix_log: FixLog[];
+    fix_note: Fixnote ;
 }
-
+export class fix_em{
+    em_id: string;
+    em_name: string;
+    contact_info: ContactInfo;
+}
 export class Submit_device {
     key: string;
     u_id: string;
@@ -34,6 +39,7 @@ export class Submit_device {
     description: string;
     priotity: string;
     fix_info: FixInfo;
+    fix_em:fix_em;
     submit_date: number;
     item_status: string;
     success:number;

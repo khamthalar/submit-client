@@ -1,3 +1,49 @@
 {
-    "base_url":"http://localhost:8080/api/public"
+    "base_url":"http://localhost:8080/api/public",
+    "department":[
+        {
+            "id":"01",
+            "name":"Administration Section",
+            "des":"AD"
+        },
+        {
+            "id":"02",
+            "name":"Operation Section",
+            "des":"OP"
+        },
+        {
+            "id":"03",
+            "name":"Marketing Section",
+            "des":"MK"
+        },
+        {
+            "id":"04",
+            "name":"Finance Section",
+            "des":"FN"
+        },
+        {
+            "id":"05",
+            "name":"Training Section",
+            "des":"TR"
+        },
+        {
+            "id":"06",
+            "name":"Ground Operation Section",
+            "des":"GO"
+        },
+        {
+            "id":"07",
+            "name":"Security & Safty Section",
+            "des":"SO"
+        },
+        {
+            "id":"08",
+            "name":"Logistic & Marketing Section",
+            "des":"L&M"
+        },
+        {
+            "id":"09",
+            "name":""
+        }
+    ]
 }

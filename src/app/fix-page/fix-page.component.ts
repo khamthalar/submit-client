@@ -51,7 +51,7 @@ export class FixPageComponent implements OnInit {
     }else{
       this.fix_info.em_log = this.data.fix_info.em_log;
     }
-    this.em_log.contact_info = this.usercontact;
+    // this.em_log.contact_info = this.usercontact;
     this.txtstatus.nativeElement.disabled = true;
     this.txtdevice.nativeElement.disabled = true;
     this.btnapply.nativeElement.disabled = true;
@@ -93,6 +93,8 @@ export class FixPageComponent implements OnInit {
     this.txtstatus.nativeElement.disabled = true;
     this.btnapply.nativeElement.disabled = true;
 
+    this.submitData();
+
     // this.firebaseService.updateSubmitItem(this.data.key,{"description":"ເນັດບໍ່ໄດ້"});
   }
   // rd_selected(rd: string) {
@@ -119,7 +121,7 @@ export class FixPageComponent implements OnInit {
   submitData(){
     if(this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
       if(this.statusText!="wait for review"){
-        this.checkEmLog();
+        console.log(this.usercontact);
       }
     }else{
       // this.dialogRef.close();

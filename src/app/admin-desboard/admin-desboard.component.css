@@ -15,6 +15,13 @@ body{
     margin: auto;
     height: calc(100% - 64px);
 }
+.onFix{
+    display: inline;
+    /* border: 1px solid brown;
+    text-align: center;
+    border-radius: 15px;
+    background-color:rgb(255, 255, 255); */
+}
 /* .btn{
     background-color: brown;
     position: absolute;
@@ -28,9 +35,18 @@ body{
 }
 
 .device-item{
+    /* position: relative; */
+    display: flex;
+}
+.item-content{
     position: relative;
     display: flex;
-    align-items:center;
+    flex-grow: 1;
+    margin: 0;
+    padding:0;
+}
+.change_log{
+    text-align: center;
 }
 .device{
     font-size: 18px;
@@ -39,7 +55,6 @@ body{
 .discription{
     font-size: 14px;
     line-height: 1.2 !important;
-    max-width: 150px;
     word-wrap: break-word;
 }
 .item-des{
@@ -50,6 +65,8 @@ body{
     font-size: 10px;
     color: gray;
 }
+
+
 
 .rotate {
     animation: rotation 0.5s infinite linear;
