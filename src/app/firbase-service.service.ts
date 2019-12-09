@@ -7,6 +7,7 @@ import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from "angularfire2/firestore";
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -69,6 +70,15 @@ export class FirbaseServiceService {
 
   getSubmitDevice_list(){
     return this.ags.collection("DevicesSubmitted",ref=>ref.where('success','==',0).orderBy('priotity','desc'));
+  }
+
+  updateItem(key:string,data:any){
+    this.ags.collection("DevicesSubmitted").doc(key).update(JSON.parse(JSON.stringify(data)));
+    
+  }
+
+  getDeviceItem(key:string){
+  return this.ags.collection("DevicesSubmitted").doc(key);
   }
 
   

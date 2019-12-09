@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FixInfo, EmLog, ContactInfo } from '../submitDevices';
+import { FixInfo, EmLog, ContactInfo, fix_em, Submit_device } from '../submitDevices';
 import { FirbaseServiceService } from '../firbase-service.service';
 import { isUndefined } from 'util';
+
+import { map } from 'rxjs/operators';
 
 
 
@@ -20,12 +22,16 @@ export class FixPageComponent implements OnInit {
   fix_info: FixInfo = new FixInfo();
   em_log: EmLog = new EmLog();
   usercontact: ContactInfo = new ContactInfo();
+  fix_em: fix_em = new fix_em();
   // selected_rd ="";
   // default_rd = "";
   cb_unchecked = true;
 
   statusText: string;
   deviceStatusText: string;
+  fix_em_name: string;
+
+  data: any;
 
   // rd1 = false;
   // rd2 = false;
@@ -37,19 +43,25 @@ export class FixPageComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<FixPageComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public defualt_data: any,
     private firebaseService: FirbaseServiceService
   ) { }
 
   ngOnInit() {
+    this.data = this.defualt_data;
     this.usercontact.email_address = localStorage.getItem('userEmailAddress');
     this.usercontact.phone_number = localStorage.getItem('userPhonenumber');
     this.em_log.em_id = localStorage.getItem('user_id');
     this.em_log.em_name = localStorage.getItem('user_name');
-    if(isUndefined(this.data.fix_info.em_log)){
+    if (isUndefined(this.data.fix_info.em_log)) {
       this.fix_info.em_log = [];
-    }else{
+    } else {
       this.fix_info.em_log = this.data.fix_info.em_log;
+    }
+    if (this.data.fix_em == null) {
+      this.fix_em_name = "";
+    } else {
+      this.fix_em_name = this.data.fix_em.em_name;
     }
     // this.em_log.contact_info = this.usercontact;
     this.txtstatus.nativeElement.disabled = true;
@@ -58,6 +70,7 @@ export class FixPageComponent implements OnInit {
 
     this.statusText = this.data.item_status;
     this.deviceStatusText = this.data.fix_info.device_status;
+    this.fix_info.fix_note = this.data.fix_info.fix_note;
 
     // if (this.data.fix_info.status == "ລໍຖ້າສ້ອມແປງ") {
     //   this.default_rd = "ລໍຖ້າສ້ອມແປງ";
@@ -67,7 +80,7 @@ export class FixPageComponent implements OnInit {
     //   this.rd_selected("ກຳລັງສ້ອມແປງ");
     // }
   }
-  cb_click(){
+  cb_click() {
     this.cb_unchecked = !this.cb_unchecked;
   }
   edit_item_status() {
@@ -79,9 +92,9 @@ export class FixPageComponent implements OnInit {
     this.txtdevice.nativeElement.focus();
   }
   onEdit() {
-    if(this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
+    if (this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status) {
       this.btnapply.nativeElement.disabled = false;
-    }else{
+    } else {
       this.btnapply.nativeElement.disabled = true;
     }
   }
@@ -94,8 +107,7 @@ export class FixPageComponent implements OnInit {
     this.btnapply.nativeElement.disabled = true;
 
     this.submitData();
-
-    // this.firebaseService.updateSubmitItem(this.data.key,{"description":"ເນັດບໍ່ໄດ້"});
+    this.updatedata(this.data.key);
   }
   // rd_selected(rd: string) {
   //   this.rd1 = false;
@@ -118,29 +130,160 @@ export class FixPageComponent implements OnInit {
   //   }
   // }
 
-  submitData(){
-    if(this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status){
-      if(this.statusText!="wait for review"){
-        console.log(this.usercontact);
-      }
-    }else{
-      // this.dialogRef.close();
-    }
-    // console.log(this.fix_info);
-  }
-  checkEmLog(){
-    if(this.fix_info.em_log.length==0){
-      this.fix_info.em_log.push(this.em_log);
-    }else{
-      let isduplicate = false;
-      this.fix_info.em_log.forEach(element => {
-        if(element.em_name==this.em_log.em_name){
-          isduplicate = true;
+  submitData() {
+    if (this.statusText == "wait for review") {
+      let em_id = localStorage.getItem('user_id');
+      let em_name = localStorage.getItem('user_name');
+      if (this.deviceStatusText != "wait for review") {
+
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'update ສາເຫດ "' + this.deviceStatusText + '"', Date.now()
+        ));
+
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'ເພີ່ມຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ "ກຳລັງສ້ອມແປງ"', Date.now()
+        ));
+
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'update ຜູ້ຮັບຜິດຊອບ "' + localStorage.getItem('user_name') + '"', Date.now()
+        ));
+
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'update status "ກຳລັງສ້ອມແປງ"', Date.now()
+        ));
+        this.fix_info.device_status = this.deviceStatusText;
+        this.fix_info.status = "ກຳລັງສ້ອມແປງ";
+
+        this.fix_em.em_id = localStorage.getItem('user_id');
+        this.fix_em.em_name = localStorage.getItem('user_name');
+        this.fix_em.contact_info = this.usercontact;
+
+
+        let submit_data = {
+          "fix_info": this.fix_info,
+          "fix_em": this.fix_em,
+          "item_status": "ກຳລັງສ້ອມແປງ"
         }
-      });
-      if(isduplicate==false){
-        this.fix_info.em_log.push(this.em_log);
+        this.firebaseService.updateItem(this.data.key, submit_data);
+      }
+    } else {
+      if (this.data.fix_em == null) {
+        let em_id = localStorage.getItem('user_id');
+        let em_name = localStorage.getItem('user_name');
+
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'ເພີ່ມຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ "' + this.statusText + '"', Date.now()
+        ));
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'update ຜູ້ຮັບຜິດຊອບ "' + localStorage.getItem('user_name') + '"', Date.now()
+        ));
+
+        this.fix_em.em_id = localStorage.getItem('user_id');
+        this.fix_em.em_name = localStorage.getItem('user_name');
+        this.fix_em.contact_info = this.usercontact;
+
+        if (this.deviceStatusText != this.data.fix_info.device_status) {
+          this.fix_info.em_log.push(this.getEmLog_item(
+            em_id, em_name, 'update ສາເຫດ "' + this.deviceStatusText + '"', Date.now()
+          ));
+          this.fix_info.em_log.push(this.getEmLog_item(
+            em_id, em_name, 'update status "ກຳລັງສ້ອມແປງ"', Date.now()
+          ));
+          this.fix_info.device_status = this.deviceStatusText;
+          this.fix_info.status = "ກຳລັງສ້ອມແປງ";
+        } else {
+          this.fix_info.device_status = this.data.fix_info.device_status;
+          this.fix_info.status = this.data.fix_info.status;
+        }
+        let submit_data = {
+          "fix_info": this.fix_info,
+          "fix_em": this.fix_em,
+          "item_status": this.statusText
+        }
+        // console.log(submit_data);
+        this.firebaseService.updateItem(this.data.key, submit_data);
+
+
+      } else {
+        this.fix_info = this.data.fix_info;
+        let em_id = localStorage.getItem('user_id');
+        let em_name = localStorage.getItem('user_name');
+        if (this.statusText == this.data.item_status) {
+          if (this.deviceStatusText != this.data.fix_info.device_status) {
+            this.fix_info.em_log.push(this.getEmLog_item(
+              em_id, em_name, 'update ສາເຫດ "' + this.deviceStatusText + '"', Date.now()
+            ));
+            this.fix_info.device_status = this.deviceStatusText;
+            if (this.data.fix_info.status == "ລໍຖ້າສ້ອມແປງ") {
+              this.fix_info.status = "ກຳລັງສ້ອມແປງ";
+              this.fix_info.em_log.push(this.getEmLog_item(
+                em_id, em_name, 'update status "ກຳລັງສ້ອມແປງ"', Date.now()
+              ));
+            }
+
+            this.firebaseService.updateItem(this.data.key, { "fix_info": this.fix_info });
+          }
+        } else {
+          if (this.deviceStatusText == this.data.fix_info.device_status) {
+            this.fix_info.em_log.push(this.getEmLog_item(
+              em_id, em_name, 'ເພີ່ມຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ "' + this.statusText + '"', Date.now()
+            ));
+
+            this.firebaseService.updateItem(this.data.key, { "fix_info": this.fix_info, "item_status": this.statusText });
+          } else {
+            this.fix_info.em_log.push(this.getEmLog_item(
+              em_id, em_name, 'ເພີ່ມຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ "' + this.statusText + '"', Date.now()
+            ));
+            this.fix_info.em_log.push(this.getEmLog_item(
+              em_id, em_name, 'update ສາເຫດ "' + this.deviceStatusText + '"', Date.now()
+            ));
+
+            this.fix_info.device_status = this.deviceStatusText;
+
+            this.firebaseService.updateItem(this.data.key, { "fix_info": this.fix_info, "item_status": this.statusText });
+          }
+        }
+      }
+
+    }
+  }
+  btnOk_click() {
+    let em_id = localStorage.getItem('user_id');
+    let em_name = localStorage.getItem('user_name');
+    this.fix_info = this.data.fix_info;
+    if (this.btnapply.nativeElement.disabled = true) {
+      if (this.cb_unchecked == false) {
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'close job', Date.now()
+        ));
+        this.firebaseService.updateItem(this.data.key, { "success": 1 ,"fix_info":this.fix_info})
+      }
+    } else {
+      this.submitData();
+      if (this.cb_unchecked == false) {
+        this.fix_info.em_log.push(this.getEmLog_item(
+          em_id, em_name, 'close job', Date.now()
+        ));
+        this.firebaseService.updateItem(this.data.key, { "success": 1 ,"fix_info":this.fix_info})
       }
     }
+    this.dialogRef.close("data");
+  }
+  getEmLog_item(id: string, name: string, action: string, issus_time: number): EmLog {
+    let em: EmLog = new EmLog();
+    em.em_id = id;
+    em.em_name = name;
+    em.issus_time = issus_time;
+    em.action = action;
+    return em;
+  }
+
+  updatedata(key: string) {
+    this.firebaseService.getDeviceItem(key).ref.get().then(device => {
+      this.data.fix_info = device.data().fix_info;
+      this.data.fix_em = device.data().fix_em;
+      this.data.item_status = device.data().item_status;
+    })
+
   }
 }
