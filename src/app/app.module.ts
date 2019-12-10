@@ -29,6 +29,7 @@ import { AdminSettingComponent } from './admin-setting/admin-setting.component';
 import { UserSettingDialogComponent } from './dialogs/user-setting-dialog/user-setting-dialog.component';
 import { FixPageComponent } from './fix-page/fix-page.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { EditLogComponent } from './dialogs/edit-log/edit-log.component';
 
 
 
@@ -46,7 +47,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     DateAgoPipe,
     AdminSettingComponent,
     UserSettingDialogComponent,
-    FixPageComponent
+    FixPageComponent,
+    EditLogComponent
     
   ],
   imports: [
@@ -65,6 +67,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
   ],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents:[AdminSettingComponent,UserSettingDialogComponent,FixPageComponent]
+  entryComponents:[AdminSettingComponent,UserSettingDialogComponent,FixPageComponent,EditLogComponent]
 })
 export class AppModule { }

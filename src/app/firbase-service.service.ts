@@ -48,8 +48,6 @@ export class FirbaseServiceService {
     this.db.object<Submit_device>(this.devicePath+'/'+key).update(data);
   }
 
-
-
   // fire store
   getUser(username:string){
     return this.ags.collection("user",ref=>ref.where("username","==",username));
@@ -80,7 +78,5 @@ export class FirbaseServiceService {
   getDeviceItem(key:string){
   return this.ags.collection("DevicesSubmitted").doc(key);
   }
-
-  
  
 }

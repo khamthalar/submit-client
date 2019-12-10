@@ -8,6 +8,7 @@ import { AdminNavComponent } from '../admin-nav/admin-nav.component';
 import { trigger,state,style,animate,transition} from '@angular/animations';
 import { FixPageComponent } from '../fix-page/fix-page.component';
 import { Submit_device } from '../submitDevices';
+import { EditLogComponent } from '../dialogs/edit-log/edit-log.component';
 
 @Component({
   selector: 'app-admin-desboard',
@@ -87,12 +88,12 @@ export class AdminDesboardComponent implements OnInit {
   showFixPage(item){
     const dialogRef = this.dialog.open(FixPageComponent,{ disableClose: true,data: item});
     dialogRef.afterClosed().subscribe(result => {
-      if(result.status=="success"){
-        // this.updateData();
-      }
+      // if(result.status=="success"){
+      //   // this.updateData();
+      // }
     });
   }
-  log_clicked(){
-    window.alert("test");
+  log_clicked(item){
+    const dialogRef = this.dialog.open(EditLogComponent,{disableClose: true,data: item});
   }
 }

@@ -1,0 +1,23 @@
+<div class="nav-bar">
+  <div class="title-body-content">
+    <span class="lb">Edit Log</span>
+  </div>
+  <img class="close_icon" src="assets/images/delete.svg" (click)="close()">
+</div>
+<div class="content">
+  <div class="log-item" *ngFor="let item of default_data">
+    <div class="icon">
+        <img src="assets/images/file.svg" class="img-responsive" alt="Image" style="width: 35px;">
+    </div>
+    <div class="dialog-centent">
+      <div class="des">{{item.em_name}} {{item.action}}</div>
+      <div class="time">
+          <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
+          <span style="margin-top: 5px; font-size:10px; color: gray;">{{item.issus_time | date:'dd MM h:mm a'}}</span>
+      </div>
+    </div>
+    
+    
+
+  </div>
+</div>
