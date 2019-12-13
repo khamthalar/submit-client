@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
   constructor(private router:Router, private auth:AuthService){}
   ngOnInit(): void {
     if(this.auth.isLogin){
-      this.router.navigate([localStorage.getItem('page_name')]);
+      this.router.navigate([sessionStorage.getItem('page_name')]);
     }else{
       this.router.navigate(['login']);
     }

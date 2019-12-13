@@ -109,15 +109,22 @@ export class LoginComponent implements OnInit {
                 this.auth.setLogin(true);
                 if(data[0].status=="admin"){
                   this.router.navigate(['desboard']);
-                  localStorage.setItem('page_name','desboard');
+                  // localStorage.setItem('page_name','desboard');
+                  sessionStorage.setItem('page_name','desboard');
                 }else if(data[0].status=="employee"){
                   this.router.navigate(['home']);
-                  localStorage.setItem('page_name','home');
+                  // localStorage.setItem('page_name','home');
+                  sessionStorage.setItem('page_name','home');
                 }
-                localStorage.setItem('user_name', data[0].name+" "+data[0].surname);
-                localStorage.setItem('user_id', data[0].key);
-                localStorage.setItem('userPhonenumber',data[0].contactInfo.phonenumber);
-                localStorage.setItem('userEmailAddress',data[0].contactInfo.email);
+                // localStorage.setItem('user_name', data[0].name+" "+data[0].surname);
+                // localStorage.setItem('user_id', data[0].key);
+                // localStorage.setItem('userPhonenumber',data[0].contactInfo.phonenumber);
+                // localStorage.setItem('userEmailAddress',data[0].contactInfo.email);
+                
+                sessionStorage.setItem('user_name', data[0].name+" "+data[0].surname);
+                sessionStorage.setItem('user_id', data[0].key);
+                sessionStorage.setItem('userPhonenumber',data[0].contactInfo.phonenumber);
+                sessionStorage.setItem('userEmailAddress',data[0].contactInfo.email);
                 this.user = data[0];
               } else {
                 window.alert("Incorrect password");

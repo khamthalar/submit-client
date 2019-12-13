@@ -24,7 +24,7 @@ export class MainNavComponent implements OnInit{
     this.logOut_Clicked.emit();
   }
   ngOnInit() {
-    this.username = localStorage.getItem('user_name');
+    this.username = sessionStorage.getItem('user_name');
   }
 
 }

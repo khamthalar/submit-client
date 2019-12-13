@@ -49,10 +49,10 @@ export class FixPageComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.defualt_data;
-    this.usercontact.email_address = localStorage.getItem('userEmailAddress');
-    this.usercontact.phone_number = localStorage.getItem('userPhonenumber');
-    this.em_log.em_id = localStorage.getItem('user_id');
-    this.em_log.em_name = localStorage.getItem('user_name');
+    this.usercontact.email_address = sessionStorage.getItem('userEmailAddress');
+    this.usercontact.phone_number = sessionStorage.getItem('userPhonenumber');
+    this.em_log.em_id = sessionStorage.getItem('user_id');
+    this.em_log.em_name = sessionStorage.getItem('user_name');
     if (isUndefined(this.data.fix_info.em_log)) {
       this.fix_info.em_log = [];
     } else {
@@ -132,8 +132,8 @@ export class FixPageComponent implements OnInit {
 
   submitData() {
     if (this.statusText == "wait for review") {
-      let em_id = localStorage.getItem('user_id');
-      let em_name = localStorage.getItem('user_name');
+      let em_id = sessionStorage.getItem('user_id');
+      let em_name = sessionStorage.getItem('user_name');
       if (this.deviceStatusText != "wait for review") {
 
         this.fix_info.em_log.push(this.getEmLog_item(
@@ -145,7 +145,7 @@ export class FixPageComponent implements OnInit {
         ));
 
         this.fix_info.em_log.push(this.getEmLog_item(
-          em_id, em_name, 'update ຜູ້ຮັບຜິດຊອບ "' + localStorage.getItem('user_name') + '"', Date.now()
+          em_id, em_name, 'update ຜູ້ຮັບຜິດຊອບ "' + sessionStorage.getItem('user_name') + '"', Date.now()
         ));
 
         this.fix_info.em_log.push(this.getEmLog_item(
@@ -154,8 +154,8 @@ export class FixPageComponent implements OnInit {
         this.fix_info.device_status = this.deviceStatusText;
         this.fix_info.status = "ກຳລັງສ້ອມແປງ";
 
-        this.fix_em.em_id = localStorage.getItem('user_id');
-        this.fix_em.em_name = localStorage.getItem('user_name');
+        this.fix_em.em_id = sessionStorage.getItem('user_id');
+        this.fix_em.em_name = sessionStorage.getItem('user_name');
         this.fix_em.contact_info = this.usercontact;
 
 
@@ -168,18 +168,18 @@ export class FixPageComponent implements OnInit {
       }
     } else {
       if (this.data.fix_em == null) {
-        let em_id = localStorage.getItem('user_id');
-        let em_name = localStorage.getItem('user_name');
+        let em_id = sessionStorage.getItem('user_id');
+        let em_name = sessionStorage.getItem('user_name');
 
         this.fix_info.em_log.push(this.getEmLog_item(
           em_id, em_name, 'ເພີ່ມຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ "' + this.statusText + '"', Date.now()
         ));
         this.fix_info.em_log.push(this.getEmLog_item(
-          em_id, em_name, 'update ຜູ້ຮັບຜິດຊອບ "' + localStorage.getItem('user_name') + '"', Date.now()
+          em_id, em_name, 'update ຜູ້ຮັບຜິດຊອບ "' + sessionStorage.getItem('user_name') + '"', Date.now()
         ));
 
-        this.fix_em.em_id = localStorage.getItem('user_id');
-        this.fix_em.em_name = localStorage.getItem('user_name');
+        this.fix_em.em_id = sessionStorage.getItem('user_id');
+        this.fix_em.em_name = sessionStorage.getItem('user_name');
         this.fix_em.contact_info = this.usercontact;
 
         if (this.deviceStatusText != this.data.fix_info.device_status) {
@@ -206,8 +206,8 @@ export class FixPageComponent implements OnInit {
 
       } else {
         this.fix_info = this.data.fix_info;
-        let em_id = localStorage.getItem('user_id');
-        let em_name = localStorage.getItem('user_name');
+        let em_id = sessionStorage.getItem('user_id');
+        let em_name = sessionStorage.getItem('user_name');
         if (this.statusText == this.data.item_status) {
           if (this.deviceStatusText != this.data.fix_info.device_status) {
             this.fix_info.em_log.push(this.getEmLog_item(
@@ -248,8 +248,8 @@ export class FixPageComponent implements OnInit {
     }
   }
   btnOk_click() {
-    let em_id = localStorage.getItem('user_id');
-    let em_name = localStorage.getItem('user_name');
+    let em_id = sessionStorage.getItem('user_id');
+    let em_name = sessionStorage.getItem('user_name');
     this.fix_info = this.data.fix_info;
     if (this.btnapply.nativeElement.disabled = true) {
       if (this.cb_unchecked == false) {

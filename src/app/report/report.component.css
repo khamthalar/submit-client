@@ -1,0 +1,42 @@
+.nav-bar{
+    height: 64px;
+    width: 100%;
+    background-color: brown;
+}
+.nav-content{
+    max-width: 1060px;
+    width: 100%;
+    margin:auto;
+    height: 100%;
+    position: relative;
+}
+.home-icon{
+    position: absolute;
+    width: 50px;
+    text-align: center;
+    top: 15.5px;
+    cursor: pointer;
+}
+.nav-title{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding-top: 17px;
+}
+.nav-menu-icon{
+    position: absolute;
+    top: 15.5px;
+    right: 0;
+}
+.filter-icon{
+    cursor: pointer;
+}
+.noselect {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

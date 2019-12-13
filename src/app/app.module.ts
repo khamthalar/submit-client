@@ -30,6 +30,7 @@ import { UserSettingDialogComponent } from './dialogs/user-setting-dialog/user-s
 import { FixPageComponent } from './fix-page/fix-page.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { EditLogComponent } from './dialogs/edit-log/edit-log.component';
+import { ReportComponent } from './report/report.component';
 
 
 
@@ -48,7 +49,8 @@ import { EditLogComponent } from './dialogs/edit-log/edit-log.component';
     AdminSettingComponent,
     UserSettingDialogComponent,
     FixPageComponent,
-    EditLogComponent
+    EditLogComponent,
+    ReportComponent
     
   ],
   imports: [

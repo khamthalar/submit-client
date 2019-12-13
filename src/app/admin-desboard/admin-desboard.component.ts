@@ -59,8 +59,9 @@ export class AdminDesboardComponent implements OnInit {
 
   logout(){
     this.auth.setLogin(false);
-    localStorage.setItem('user_name', "");
-    localStorage.setItem('user_id','');
+    
+    sessionStorage.setItem('user_name', "");
+    sessionStorage.setItem('user_id','');
     this.router.navigate(['login']);
   }
 

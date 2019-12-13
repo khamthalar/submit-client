@@ -31,14 +31,14 @@ export class HomeComponent implements OnInit {
     ) { }
   username:string;
   ngOnInit() {
-    this.username = localStorage.getItem('user_name');
+    this.username = sessionStorage.getItem('user_name');
     // this.updateData();
     this.getDeviceList();
   }
   logout(){
     this.auth.setLogin(false);
-    localStorage.setItem('user_name', "");
-    localStorage.setItem('user_id','');
+    sessionStorage.setItem('user_name', "");
+    sessionStorage.setItem('user_id','');
     this.router.navigate(['login']);
   }
   // newSubmit(){

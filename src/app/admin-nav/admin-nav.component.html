@@ -27,6 +27,9 @@
           <span>ໜ້າຫຼັກ</span>
         </div>
         <div class="nav-menu">
+            <div class="menu-refresh" (click)="openReport()">
+                <img src="assets/images/progressReport.svg" class="img-responsive" alt="Image" style="width: 33px;">
+            </div>
             <div class="menu-refresh" (click)="refresh()">
                 <img src="assets/images/refresh-page-option.svg" class="img-responsive" alt="Image" style="width: 33px;" [ngClass]="{rotate: spin}">
             </div>

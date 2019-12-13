@@ -12,10 +12,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   setLogin(value: boolean) {
-    localStorage.setItem('logedin', value.toString());
+    sessionStorage.setItem('logedin', value.toString());
   }
   get isLogin() {
-    return JSON.parse(localStorage.getItem('logedin') || 'false');
+    return JSON.parse(sessionStorage.getItem('logedin') || 'false');
   }
   getUserDetail(user, password) {
     let data = {

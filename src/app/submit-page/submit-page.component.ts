@@ -75,8 +75,8 @@ export class SubmitPageComponent implements OnInit {
       this.devices = this.submitForm.value.rd_device;
     }
     let data = {
-      "UID": localStorage.getItem("user_id"),
-      "U_NAME": localStorage.getItem("user_name"),
+      "UID": sessionStorage.getItem("user_id"),
+      "U_NAME": sessionStorage.getItem("user_name"),
       "DEPARTMENT": this.submitForm.value.department,
       "DEVICES": this.devices,
       "DESCRIPTION": this.submitForm.value.txt_des,
@@ -87,8 +87,8 @@ export class SubmitPageComponent implements OnInit {
       if (data.DESCRIPTION != "") {
         if (data.IMPORTANT != "") {
           if (data.DEPARTMENT != "") {
-            this.submitdevice.u_id = localStorage.getItem("user_id");
-            this.submitdevice.u_name = localStorage.getItem("user_name");
+            this.submitdevice.u_id = sessionStorage.getItem("user_id");
+            this.submitdevice.u_name = sessionStorage.getItem("user_name");
             this.submitdevice.department = this.submitForm.value.department;
             this.submitdevice.device = this.devices;
             this.submitdevice.description = this.submitForm.value.txt_des;
