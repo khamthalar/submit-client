@@ -31,6 +31,8 @@ import { FixPageComponent } from './fix-page/fix-page.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { EditLogComponent } from './dialogs/edit-log/edit-log.component';
 import { ReportComponent } from './report/report.component';
+import { CommonModule } from '@angular/common';
+import { MatToolbarModule, MatInputModule, MatTableModule } from '@angular/material';
 
 
 
@@ -65,8 +67,10 @@ import { ReportComponent } from './report/report.component';
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule.enablePersistence(),
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    CommonModule
   ],
+  exports: [CommonModule, MatToolbarModule, MatInputModule, MatTableModule],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent],
   entryComponents:[AdminSettingComponent,UserSettingDialogComponent,FixPageComponent,EditLogComponent]

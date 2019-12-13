@@ -76,7 +76,11 @@ export class FirbaseServiceService {
   }
 
   getDeviceItem(key:string){
-  return this.ags.collection("DevicesSubmitted").doc(key);
+    return this.ags.collection("DevicesSubmitted").doc(key);
+  }
+
+  getAllFixedDevices(){
+    return this.ags.collection("DevicesSubmitted",ref=>ref.where("","==",""));
   }
  
 }
