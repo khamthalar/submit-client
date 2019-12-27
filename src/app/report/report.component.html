@@ -4,35 +4,87 @@
             <img src="assets/images/home-icon.svg" class="img-responsive" alt="Image" style="width: 33px;">
         </div>
         <div class="nav-title">Report</div>
-        <div class="nav-menu-icon">
+        <!-- <div class="nav-menu-icon">
             <div class="filter-icon">
                 <img src="assets/images/del_filter.svg" class="img-responsive" alt="Image" style="height: 33px;">
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
-<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-<mat-table #table [dataSource]="dataSource">
+<div class="content">
 
-    <ng-container matColumnDef="position">
-        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.position}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.firstName}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="lastName">
-        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.lastName}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+    <div class="date_filter">
+        <mat-form-field class="startDate">
+            <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date"
+                (dateChange)="startDateSelect($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="endDate">
+            <input matInput [min]="minDate" [matDatepicker]="picker2" placeholder="Choose a date"
+                (dateChange)="endDateSelect($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </div>
 
-<mat-paginator [length]="5" [pageSize]="3" [pageSizeOptions]="[5, 10, 25]">
-</mat-paginator>
+
+    <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+            </span>
+        </div>
+        <input type="text" style="outline: none;box-shadow: none !important;" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+        <div class="invalid-feedback">
+            Please choose a username.
+        </div>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="device">
+            <mat-header-cell *matHeaderCellDef> device </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <div class="item-ico">
+                    <ng-template [ngIf]="element.device=='Computer'">
+                        <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                    <ng-template [ngIf]="element.device=='Internet'">
+                        <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                    <ng-template [ngIf]="element.device=='Printer'">
+                        <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                    <ng-template
+                        [ngIf]="element.device!='Computer' && element.device!='Internet' && element.device!='Printer'">
+                        <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                    </ng-template>
+                </div>
+                <div class="item-des">
+                    <div class="device">
+                        {{element.device}}
+                    </div>
+                    <div class="discription">ອາການ:{{element.description}}</div>
+                    <div class="submit-time">
+                        <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
+                        <span style="margin-top: 5px;">{{element.submit_date | date:'dd MMM yyyy h:mm a'}}</span>
+                    </div>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Department">
+            <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.department}}</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [length]="5" [pageSize]="15" [pageSizeOptions]="[15, 20, 25]">
+    </mat-paginator>
+</div>
+
+<pre>{{deviceList | json}}</pre>

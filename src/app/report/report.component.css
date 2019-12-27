@@ -31,6 +31,21 @@
 .filter-icon{
     cursor: pointer;
 }
+
+.content{
+    max-width: 1060px;
+    margin: auto;
+}
+.startDate{
+    margin-right: 20px;
+}
+.footer{
+    position: relative;
+}
+.txtFilter{
+    position: absolute;
+    bottom: 15px;
+}
 .noselect {
     cursor: default;
     -webkit-touch-callout: none;
@@ -39,4 +54,46 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.device-item{
+    /* position: relative; */
+    display: flex;
+}
+.item-content{
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    margin: 0;
+    padding:0;
+}
+.change_log{
+    text-align: center;
+}
+.device{
+    font-size: 18px;
+    line-height: 1.2 !important;
+}
+.discription{
+    font-size: 14px;
+    line-height: 1.2 !important;
+    word-wrap: break-word;
+}
+.item-des{
+    padding:0;
+    padding-left: 5px;
+}
+.submit-time{
+    font-size: 10px;
+    color: gray;
+}
+
+.date_filter{
+    float: left;
+    margin-right: 15px;
+}
+
+.txt-search{
+    width:200px ;
+    float: left;
 }

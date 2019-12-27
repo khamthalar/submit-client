@@ -79,8 +79,15 @@ export class FirbaseServiceService {
     return this.ags.collection("DevicesSubmitted").doc(key);
   }
 
-  getAllFixedDevices(){
-    return this.ags.collection("DevicesSubmitted",ref=>ref.where("","==",""));
+  getAllFixedDevices(startdate:number,enddate:number){
+    return this.ags.collection("DevicesSubmitted",ref=>ref
+                .where("success","==",1)
+                .where("submit_date",">=",startdate)
+                .where("submit_date","<=",enddate).orderBy('submit_date','desc'));
+  }
+  getAllFixedDevicesNoDate(){
+    return this.ags.collection("DevicesSubmitted",ref=>ref
+                .where("success","==",1).orderBy('submit_date','desc'));
   }
  
 }
