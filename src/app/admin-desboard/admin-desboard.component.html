@@ -4,50 +4,56 @@
             <img src="assets/images/loading-process.svg" class="img-responsive rotate" alt="Image"
                 style="width: 30px; margin-top: 5px;">
         </div>
+        <!-- antiquewhite -->
         <ul class="list-group">
-            <li class="list-group-item device-item" *ngFor="let item of deviceList">
-                <div class="item-content"  (click)="showFixPage(item)">
-                    <div class="item-ico">
-                        <ng-template [ngIf]="item.device=='Computer'">
-                            <img src="assets/images/computer.svg" class="img-responsive" alt="Image"
-                                style="width: 60px;">
-                        </ng-template>
-                        <ng-template [ngIf]="item.device=='Internet'">
-                            <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                        </ng-template>
-                        <ng-template [ngIf]="item.device=='Printer'">
-                            <img src="assets/images/printer.svg" class="img-responsive" alt="Image"
-                                style="width: 60px;">
-                        </ng-template>
-                        <ng-template
-                            [ngIf]="item.device!='Computer' && item.device!='Internet' && item.device!='Printer'">
-                            <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                        </ng-template>
-                    </div>
-                    <div class="item-des">
-                        <div class="device">
-                            <div class="onFix" *ngIf="item.fix_info.status=='ກຳລັງສ້ອມແປງ'"><img
-                                    src="assets/images/wrench.svg" class="img-responsive" alt="Image"
-                                    style="width: 20px;">
-                            </div>{{item.device}}
+            <div *ngFor="let item of deviceList">
+                <li class="list-group-item device-item" [ngClass]="{'antiquewhite': item.fix_info.status=='ກຳລັງສ້ອມແປງ'}">
+                    <div class="item-content" (click)="showFixPage(item)">
+                        <div class="item-ico">
+                            <ng-template [ngIf]="item.device=='Computer'">
+                                <img src="assets/images/computer.svg" class="img-responsive" alt="Image"
+                                    style="width: 60px;">
+                            </ng-template>
+                            <ng-template [ngIf]="item.device=='Internet'">
+                                <img src="assets/images/wifi.svg" class="img-responsive" alt="Image"
+                                    style="width: 60px;">
+                            </ng-template>
+                            <ng-template [ngIf]="item.device=='Printer'">
+                                <img src="assets/images/printer.svg" class="img-responsive" alt="Image"
+                                    style="width: 60px;">
+                            </ng-template>
+                            <ng-template
+                                [ngIf]="item.device!='Computer' && item.device!='Internet' && item.device!='Printer'">
+                                <img src="assets/images/wrench.svg" class="img-responsive" alt="Image"
+                                    style="width: 60px;">
+                            </ng-template>
                         </div>
-                        <!-- <div class="discription">ອາການ:{{item.discription | slice:0:15}}...</div> -->
-                        <ng-template [ngIf]="item.priotity==1">
-                            <div class="discription" style="color: red;">ອາການ:{{item.description}} (ສ້ອມແປງດ່ວນ)</div>
-                        </ng-template>
-                        <ng-template [ngIf]="item.priotity==0">
-                            <div class="discription">ອາການ:{{item.description}}</div>
-                        </ng-template>
-                        <div class="submit-time">
-                            <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
-                            <span style="margin-top: 5px;">{{item.submit_date | dateAgo}}</span>
+                        <div class="item-des">
+                            <div class="device">
+                                <div class="onFix" *ngIf="item.fix_info.status=='ກຳລັງສ້ອມແປງ'"><img
+                                        src="assets/images/wrench.svg" class="img-responsive" alt="Image"
+                                        style="width: 20px;">
+                                </div>{{item.device}}
+                            </div>
+                            <!-- <div class="discription">ອາການ:{{item.discription | slice:0:15}}...</div> -->
+                            <ng-template [ngIf]="item.priotity==1">
+                                <div class="discription" style="color: red;">ອາການ:{{item.description}} (ສ້ອມແປງດ່ວນ)
+                                </div>
+                            </ng-template>
+                            <ng-template [ngIf]="item.priotity==0">
+                                <div class="discription">ອາການ:{{item.description}}</div>
+                            </ng-template>
+                            <div class="submit-time">
+                                <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
+                                <span style="margin-top: 5px;">{{item.submit_date | dateAgo}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="change_log" (click)="log_clicked(item.fix_info.em_log)">
-                    <img src="assets/images/file.svg" class="img-responsive" alt="Image" style="width: 40px;">
-                </div>
-            </li>
+                    <div class="change_log" (click)="log_clicked(item.fix_info.em_log)">
+                        <img src="assets/images/file.svg" class="img-responsive" alt="Image" style="width: 40px;">
+                    </div>
+                </li>
+            </div>
         </ul>
     </div>
 </app-admin-nav>

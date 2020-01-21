@@ -65,7 +65,9 @@ body{
     font-size: 10px;
     color: gray;
 }
-
+.antiquewhite{
+    background-color: antiquewhite !important;
+}
 
 
 .rotate {
@@ -80,3 +82,4 @@ body{
       transform: rotate(359deg);
     }
   }
+
