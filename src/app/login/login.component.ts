@@ -104,6 +104,7 @@ export class LoginComponent implements OnInit {
     ).subscribe(data=>{
       if(data.length==0){
         window.alert("Incorrect username");
+        this.loading = false;
       }else if(data.length==1){
         if (CryptoJS.AES.decrypt(data[0].password.trim(), "admin@2k18".trim()).toString(CryptoJS.enc.Utf8) == this.loginForm.value.txtpassword) {
                 this.auth.setLogin(true);
@@ -128,9 +129,9 @@ export class LoginComponent implements OnInit {
                 this.user = data[0];
               } else {
                 window.alert("Incorrect password");
+                this.loading = false;
               }
       }
     });
-
   }
 }

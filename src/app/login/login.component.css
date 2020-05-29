@@ -19,7 +19,9 @@
     }
 }
 
-
+.txt-password-ico{
+  cursor: pointer;
+}
 .loading{
     width: 100%;
     height: 100%;
