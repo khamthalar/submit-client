@@ -3,24 +3,24 @@
   <input type="password" id="password" placeholder="password">
   <button type="submit">submit</button>
 </form> -->
-<div class="header text-center">ລະບົບແຈ້ງສ້ອມແປງຄອມພິວເຕີ</div>
+<div class="header text-center boonhome">ລະບົບແຈ້ງສ້ອມແປງຄອມພິວເຕີ</div>
 <div class="login-logo text-center">
   <img src="assets/images/logo_index.png" style="width: 200px; height:200px;">
 </div>
 <form class="login-form text-center" [formGroup]="loginForm">
-  <mat-form-field class="txt-field">
+  <mat-form-field class="txt-field boonhome">
     <!-- <mat-icon matSuffix>person</mat-icon>
     <mat-icon matPrefix>person</mat-icon> -->
     <input type="text" matInput placeholder="User Name" required formControlName="txtuser">
   </mat-form-field>
-  <mat-form-field class="txt-field">
+  <mat-form-field class="txt-field boonhome">
     <input matInput placeholder="ລະຫັດຜ່ານ" required 
     [type]="hide ? 'password':'text'"
     formControlName="txtpassword">
     <mat-icon class="txt-password-ico"matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
   <div>
-    <button mat-flat-button color="primary" (click)="login_Clicked()">ເຂົ້າສູ່ລະບົບ</button>
+    <button class="boonhome" mat-flat-button color="primary" (click)="login_Clicked()">ເຂົ້າສູ່ລະບົບ</button>
   </div>
 </form>
 

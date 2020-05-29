@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'boonhome-400';
+  src: url("../../assets/fonts/boonhome/boonhome-400.eot");
+  src: 
+  url("../../assets/fonts/boonhome/boonhome-400.otf") format("opentype"), 
+  url("../../assets/fonts/boonhome/boonhome-400.woff") format("woff"), 
+  url("../../assets/fonts/boonhome/boonhome-400.svg") format("svg"), 
+  url("../../assets/fonts/boonhome/boonhome-400.ttf") format('truetype');
+}
+
+.boonhome {
+  font-family: 'boonhome-400' !important;
+}
 .sidenav-container {
     height: 100%;
   }

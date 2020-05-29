@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "login002": {
+    "request_fix": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/login002",
+            "outputPath": "dist/request_fix",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -59,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "login002:build"
+            "browserTarget": "request_fix:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "login002:build:production"
+              "browserTarget": "request_fix:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "login002:build"
+            "browserTarget": "request_fix:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "login002-e2e": {
+    "request_fix-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "login002:serve"
+            "devServerTarget": "request_fix:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "login002:serve:production"
+              "devServerTarget": "request_fix:serve:production"
             }
           }
         },
@@ -135,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "login002"
+  "defaultProject": "request_fix"
 }

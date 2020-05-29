@@ -1,7 +1,22 @@
-body{
+@font-face {
+    font-family: 'boonhome-400';
+    src: url("../../assets/fonts/boonhome/boonhome-400.eot");
+    src: 
+    url("../../assets/fonts/boonhome/boonhome-400.otf") format("opentype"), 
+    url("../../assets/fonts/boonhome/boonhome-400.woff") format("woff"), 
+    url("../../assets/fonts/boonhome/boonhome-400.svg") format("svg"), 
+    url("../../assets/fonts/boonhome/boonhome-400.ttf") format('truetype');
+}
+
+.boonhome {
+    font-family: 'boonhome-400' !important;
+}
+
+body {
     margin: 0;
 }
-.loading{
+
+.loading {
     position: absolute;
     z-index: 99999;
     width: 100%;
@@ -9,77 +24,86 @@ body{
     text-align: center;
     background-color: rgba(255, 255, 255, 0.8);
 }
-.content{
+
+.content {
     position: relative;
     max-width: 1060px;
     margin: auto;
     height: calc(100% - 64px);
 }
-.onFix{
+
+.onFix {
     display: inline;
     /* border: 1px solid brown;
     text-align: center;
     border-radius: 15px;
     background-color:rgb(255, 255, 255); */
 }
+
 /* .btn{
     background-color: brown;
     position: absolute;
     bottom: 10px;
     right: 10px;
 } */
-@media(min-width:600px){
-    .content{
+
+@media(min-width:600px) {
+    .content {
         height: calc(100% - 156px);
     }
 }
 
-.device-item{
+.device-item {
     /* position: relative; */
     display: flex;
 }
-.item-content{
+
+.item-content {
     position: relative;
     display: flex;
     flex-grow: 1;
     margin: 0;
-    padding:0;
+    padding: 0;
 }
-.change_log{
+
+.change_log {
     text-align: center;
 }
-.device{
+
+.device {
     font-size: 18px;
     line-height: 1.2 !important;
 }
-.discription{
+
+.discription {
     font-size: 14px;
     line-height: 1.2 !important;
     word-wrap: break-word;
 }
-.item-des{
-    padding:0;
+
+.item-des {
+    padding: 0;
     padding-left: 5px;
 }
-.submit-time{
+
+.submit-time {
     font-size: 10px;
     color: gray;
 }
-.antiquewhite{
+
+.antiquewhite {
     background-color: antiquewhite !important;
 }
 
-
 .rotate {
     animation: rotation 0.5s infinite linear;
-  }
-  
-  @keyframes rotation {
+}
+
+@keyframes rotation {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-      transform: rotate(359deg);
+        transform: rotate(359deg);
     }
-  }
-
+}

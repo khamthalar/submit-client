@@ -1,24 +1,24 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav main-nav" fixedInViewport="true"
+<mat-sidenav-container class="sidenav-container boonhome">
+  <mat-sidenav #drawer class="sidenav main-nav boonhome" fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-toolbar class="nav-user text-center">
+    <mat-toolbar class="nav-user text-center boonhome">
       <i class="fa fa-user-circle" aria-hidden="true" style="font-size:50px;"></i>
       <p style="margin-bottom: 0; margin-top:-7px; font-size:12px;">{{username}}</p>
     </mat-toolbar>
     <mat-nav-list>
-      <button mat-list-item class="btn-list">
+      <button mat-list-item class="btn-list boonhome">
         <i class="fa fa-sign-out">ຜູ້ໃຊ້ງານລະບົບ</i>
       </button>
-      <button mat-list-item class="btn-list" (click)="logout()">
+      <button mat-list-item class="btn-list boonhome" (click)="logout()">
         <i class="fa fa-sign-out">ອອກຈາກລະບົບ</i>
       </button>
 
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class="body-content">
+  <mat-sidenav-content class="body-content boonhome">
     <div class="nav-background">
-      <mat-toolbar class="nav">
+      <mat-toolbar class="nav boonhome">
         <div class="title-body-content">
           <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
             *ngIf="isHandset$ | async">
@@ -41,9 +41,9 @@
               <p style="margin-bottom: 0; margin-top:-7px; font-size:12px;">{{username}}</p>
           </div>
           <mat-menu #menu="matMenu">
-            <div mat-menu-item>ຂໍ້ມູນສ່ວນຕົວ</div>
-            <div mat-menu-item>ປ່ຽນລະຫັດຜ່ານ</div>
-            <div mat-menu-item (click)="logout()">ອອກຈາກລະບົບ</div>
+            <div mat-menu-item class="boonhome">ຂໍ້ມູນສ່ວນຕົວ</div>
+            <div mat-menu-item class="boonhome">ປ່ຽນລະຫັດຜ່ານ</div>
+            <div mat-menu-item (click)="logout()" class="boonhome">ອອກຈາກລະບົບ</div>
           </mat-menu>
         </div>
       </mat-toolbar>
