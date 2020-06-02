@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'boonhome-400';
+    src: url("../../assets/fonts/boonhome/boonhome-400.eot");
+    src: 
+    url("../../assets/fonts/boonhome/boonhome-400.otf") format("opentype"), 
+    url("../../assets/fonts/boonhome/boonhome-400.woff") format("woff"), 
+    url("../../assets/fonts/boonhome/boonhome-400.svg") format("svg"), 
+    url("../../assets/fonts/boonhome/boonhome-400.ttf") format('truetype');
+}
+
+.boonhome {
+    font-family: 'boonhome-400' !important;
+}
+.content{
+    max-width: 1060px;
+    width: 100%;
+    margin:auto;
+    height: 100%;
+}
+.nav-bar{
+    height: 64px;
+    width: 100%;
+    background-color: brown;
+}
+.nav-content{
+    max-width: 1060px;
+    width: 100%;
+    margin:auto;
+    height: 100%;
+    position: relative;
+}
+.home-icon{
+    position: absolute;
+    width: 64px;
+    text-align: center;
+    top: 15.5px;
+    cursor: pointer;
+}
+.nav-title{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding-top: 17px;
+}
+.nav-menu-icon{
+    position: absolute;
+    top: 15.5px;
+    right: 0;
+}
+
+
+.none-outline{
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select:none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    outline: none !important;
+}
+
+table {
+    width: calc(100% - 40px);
+}
+.table-head-section{
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.button-right{
+    position: absolute;
+    right: 0;
+    width: fit-content;
+    bottom: 10px;
+}
+.btn-refresh{
+    float: left;
+    width: fit-content;
+   
+}
+#btn-refresh{
+    border: 0;
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+.btn-add-user{
+    float: left;
+    width: fit-content;
+    background-color:#2E9A7A;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+}
+.btn-add-user:hover{
+    background-color:rgb(29, 136, 104);
+}
+.header{
+    background-color:#3B444F !important;
+    color: white !important;
+}
+.num-user{
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+.num-user-text{
+    font-size: 20px;
+    padding-left: 5px;
+    margin-top: 5px;
+}
+
+#tb-user{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.th_user{
+    border-radius: 10px 0 0 0;
+    padding-left: 25px !important;
+}
+.th_status{
+    border-radius: 0 10px 0 0;
+}
+th{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+.user_password{
+    border: none;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.user_status{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    width: fit-content;
+}
+.act_user_st{
+    background-color: #DBF0FD;
+}
+.del_user_st{
+    background-color: #FBDDE9;
+}
+.status{
+    font-size: 10px;
+    color: gray;
+}

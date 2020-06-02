@@ -16,6 +16,8 @@ export class AdminNavComponent implements OnInit {
 
   username: string;
   spin = false;
+  title:string;
+  isHomePage:boolean = true;
 
   @Output() logOut_Clicked: EventEmitter<any> = new EventEmitter();
   @Output() refresh_Clicked: EventEmitter<any> = new EventEmitter();

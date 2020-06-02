@@ -1,0 +1,58 @@
+<div class="nav-bar">
+  <div class="nav-content">
+    <div class="home-icon" (click)="gotoDeskboard()">
+      <img src="assets/svg/return.svg" class="img-responsive" alt="Image" style="width: 33px;">
+    </div>
+    <div class="nav-title boonhome">ຕັ້ງຄ່າ</div>
+  </div>
+</div>
+<div class="content">
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab class="boonhome" label="ຜູ້ໃຊ້ງານລະບົບ">
+      <div class="table-head-section">
+        <div class="num-user">
+          <img src="/assets/svg/users.svg" width="22" style="padding-bottom: 10px;">
+          <span class="num-user-text" id="user-num">{{users_num}} <b>users</b></span>
+          <span id="loader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+            [hidden]="!show_user_load"></span>
+        </div>
+        <div class="button-right">
+          <div class="btn-refresh"><button class="none-outline" id="btn-refresh" (click)="user_refresh()">
+              <img src="/assets/svg/refresh.svg" width="32">
+            </button></div>
+          <div class="btn-add-user" (click)="newUsers()"><img src="/assets/svg/add_user.svg" width="25"
+              style="margin-right: 5px;">
+            Add new user</div>
+        </div>
+      </div>
+      <table mat-table [dataSource]="dataSource" id="tb-user" matSort>
+
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef class="th_user header"> ຜູ້ໃຊ້ງານລະບົບ </th>
+          <td mat-cell *matCellDef="let element" (click)="userSetting(element.key,element.status, element.name,element.surname)"> 
+            <div>{{element.name}} {{element.surname}}</div>
+            <div class="status">({{element.status}})</div>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="depart">
+          <th mat-header-cell *matHeaderCellDef class="header"> ພະແນກ </th>
+          <td mat-cell *matCellDef="let element" (click)="userSetting(element.key,element.status, element.name,element.surname)"> {{element.username}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef class="th_status header"> ສະຖານະ </th>
+          <td mat-cell *matCellDef="let element" (click)="userSetting(element.key,element.status, element.name,element.surname)">
+            <div class="user_status act_user_st" *ngIf="element.active==1">active</div>
+            <div class="user_status del_user_st" *ngIf="element.active!=1">deleted</div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -7,11 +7,14 @@
       <p style="margin-bottom: 0; margin-top:-7px; font-size:12px;">{{username}}</p>
     </mat-toolbar>
     <mat-nav-list>
-      <button mat-list-item class="btn-list boonhome">
-        <i class="fa fa-sign-out">ຜູ້ໃຊ້ງານລະບົບ</i>
+      <button mat-list-item class="btn-list">
+        <span class="boonhome">ຂໍ້ມູນສ່ວນຕົວ</span>
       </button>
-      <button mat-list-item class="btn-list boonhome" (click)="logout()">
-        <i class="fa fa-sign-out">ອອກຈາກລະບົບ</i>
+      <button mat-list-item class="btn-list">
+        <span class="boonhome">ປ່ຽນລະຫັດຜ່ານ</span>
+      </button>
+      <button mat-list-item class="btn-list" (click)="logout()">
+        <i class="fa fa-sign-out"><span class="boonhome">ອອກຈາກລະບົບ</span></i>
       </button>
 
     </mat-nav-list>
