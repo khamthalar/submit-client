@@ -69,6 +69,10 @@ export class FirbaseServiceService {
   getSubmitDevice_list(){
     return this.ags.collection("DevicesSubmitted",ref=>ref.where('success','==',0).orderBy('priotity','desc'));
   }
+  getSubmitDevice_list_by_user(key:string){
+    return this.ags.collection("DevicesSubmitted",ref=>ref
+                .where("success","==",1)).doc("").collection("");
+  }
 
   updateItem(key:string,data:any){
     this.ags.collection("DevicesSubmitted").doc(key).update(JSON.parse(JSON.stringify(data)));
@@ -88,6 +92,9 @@ export class FirbaseServiceService {
   getAllFixedDevicesNoDate(){
     return this.ags.collection("DevicesSubmitted",ref=>ref
                 .where("success","==",1).orderBy('submit_date','desc'));
+  }
+  getDepart(){
+    return this.ags.collection("department",ref=>ref.orderBy('name','desc'));
   }
  
 }

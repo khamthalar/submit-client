@@ -82,11 +82,11 @@ export class AdminDesboardComponent implements OnInit {
   }
 
   refreshData(){
-    // this.divstate = 'show';
-    // this.deviceList=null;
-    // this.getDeviceList();
-    this.router.navigate(['admin_setring']);
-    sessionStorage.setItem('page_name', 'admin_setring');
+    this.divstate = 'show';
+    this.deviceList=null;
+    this.getDeviceList();
+    // this.router.navigate(['admin_setring']);
+    // sessionStorage.setItem('page_name', 'admin_setring');
   }
   showFixPage(item){
     const dialogRef = this.dialog.open(FixPageComponent,{ disableClose: true,data: item});

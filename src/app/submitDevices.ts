@@ -1,3 +1,4 @@
+import { DeprecatedCurrencyPipe } from '@angular/common';
 
 
 export class ContactInfo {
@@ -32,9 +33,10 @@ export class fix_em{
 }
 export class Submit_device {
     key: string;
-    u_id: string;
-    u_name: string;
-    department: string;
+    request_em:userLogin;
+    // u_id: string;
+    // u_name: string;
+    // department: string;
     device: string;
     description: string;
     priotity: string;
@@ -53,12 +55,18 @@ export class userContact{
     email:string;
     lineID:string;
 }
+export class Depart{
+    key:string;
+    name:string;
+    des:string;
+}
 export class userLogin{
     key:string;
     name:string;
     surname:string;
     fullname:string;
     contactInfo:userContact;
+    department:Depart;
     status:string;
     username:string;
     password:string;

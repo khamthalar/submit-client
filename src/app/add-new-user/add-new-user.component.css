@@ -1,3 +1,24 @@
+
+@font-face {
+    font-family: 'boonhome-400';
+    src: url("../../assets/fonts/boonhome/boonhome-400.eot");
+    src: 
+    url("../../assets/fonts/boonhome/boonhome-400.otf") format("opentype"), 
+    url("../../assets/fonts/boonhome/boonhome-400.woff") format("woff"), 
+    url("../../assets/fonts/boonhome/boonhome-400.svg") format("svg"), 
+    url("../../assets/fonts/boonhome/boonhome-400.ttf") format('truetype');
+}
+
+.boonhome {
+    font-family: 'boonhome-400' !important;
+}
+
+.frm-user{
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    max-width: 500px;
+}
 .nav-bar {
     padding-left: 16px;
     padding-right: 16px;
@@ -25,4 +46,26 @@
     position: absolute;
     right: 16px;
     top: 18px;
+}
+.frm-btn{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.btn-frame{
+    margin: auto;
+    text-align: center;
+}
+.txt-l,.txt-R{
+    width: calc(50% - 3px);
+}
+@media(max-width:420px){
+    .txt-l,.txt-R{
+        width: 100%;
+    }
+    .txt-R{
+        margin-left: 0px !important;
+    }
+}
+input::-webkit-input-placeholder, input::-moz-placeholder, input::placeholder,input:-ms-input-placeholder,input:-moz-placeholder{
+    font-family: 'boonhome-400' !important;
 }

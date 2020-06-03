@@ -42,12 +42,8 @@ export class AdminNavComponent implements OnInit {
     sessionStorage.setItem('page_name', 'report');
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(AdminSettingComponent, { disableClose: true });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result.status == "success") {
-        // this.updateData();
-      }
-    });
+    this.router.navigate(['admin_setring']);
+    sessionStorage.setItem('page_name', 'admin_setring');
   }
 
 }

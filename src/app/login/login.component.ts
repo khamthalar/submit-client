@@ -117,15 +117,12 @@ export class LoginComponent implements OnInit {
                   // localStorage.setItem('page_name','home');
                   sessionStorage.setItem('page_name','home');
                 }
-                // localStorage.setItem('user_name', data[0].name+" "+data[0].surname);
-                // localStorage.setItem('user_id', data[0].key);
-                // localStorage.setItem('userPhonenumber',data[0].contactInfo.phonenumber);
-                // localStorage.setItem('userEmailAddress',data[0].contactInfo.email);
                 
                 sessionStorage.setItem('user_name', data[0].name+" "+data[0].surname);
                 sessionStorage.setItem('user_id', data[0].key);
                 sessionStorage.setItem('userPhonenumber',data[0].contactInfo.phonenumber);
                 sessionStorage.setItem('userEmailAddress',data[0].contactInfo.email);
+                sessionStorage.setItem('user',JSON.stringify(data[0]));
                 this.user = data[0];
               } else {
                 window.alert("Incorrect password");

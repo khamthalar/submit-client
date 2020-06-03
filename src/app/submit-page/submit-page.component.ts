@@ -9,6 +9,7 @@ import { Submit_device, FixInfo } from '../submitDevices';
 
 import { FirbaseServiceService } from '../firbase-service.service';
 import { DatePipe } from '@angular/common';
+import { userLogin} from '../submitDevices';
 
 
 
@@ -20,6 +21,7 @@ import { DatePipe } from '@angular/common';
 })
 
 export class SubmitPageComponent implements OnInit {
+  user:userLogin = new userLogin();
   submitForm: FormGroup;
   test: String;
   rd_select: boolean = false;
@@ -53,6 +55,7 @@ export class SubmitPageComponent implements OnInit {
   }
   ngOnInit() {
     this.loading = this.loading_none;
+    this.user = JSON.parse(sessionStorage.getItem('user'));
   }
   // back_Clicked() {
   //   // window.alert(this.submitForm.value.txt_rd);
@@ -77,7 +80,7 @@ export class SubmitPageComponent implements OnInit {
     let data = {
       "UID": sessionStorage.getItem("user_id"),
       "U_NAME": sessionStorage.getItem("user_name"),
-      "DEPARTMENT": this.submitForm.value.department,
+      "DEPARTMENT": this.user.department,
       "DEVICES": this.devices,
       "DESCRIPTION": this.submitForm.value.txt_des,
       "IMPORTANT": this.submitForm.value.rd_choices,
@@ -86,14 +89,10 @@ export class SubmitPageComponent implements OnInit {
     if (data.DEVICES != "") {
       if (data.DESCRIPTION != "") {
         if (data.IMPORTANT != "") {
-          if (data.DEPARTMENT != "") {
-            this.submitdevice.u_id = sessionStorage.getItem("user_id");
-            this.submitdevice.u_name = sessionStorage.getItem("user_name");
-            this.submitdevice.department = this.submitForm.value.department;
             this.submitdevice.device = this.devices;
             this.submitdevice.description = this.submitForm.value.txt_des;
             this.submitdevice.priotity = this.submitForm.value.rd_choices;
-
+            this.submitdevice.request_em = this.user;
             this.fixInfo.device_status = "wait for review";
             this.fixInfo.status = "ລໍຖ້າສ້ອມແປງ";
             this.fixInfo.em_log = [];
@@ -103,34 +102,10 @@ export class SubmitPageComponent implements OnInit {
             this.submitdevice.submit_date = Date.now();
             this.submitdevice.item_status = "wait for review";
             this.submitdevice.success = 0;
-
-            // this.firebaseService.createSubmitDevice(this.submitdevice);
             this.firebaseService.createSubmitDevices(this.submitdevice);
 
             window.alert("Success !")
             this.dialogRef.close({ "status": "success" });
-            // console.log(this.submitdevice);
-            // this.http.post<any>(defualt_data.base_url + '/submit_devices', data).subscribe(data => {
-            //   if (data.res == "success") {
-            //     this.loading_status = false;
-            //     this.loading = this.loading_none;
-            //     window.alert("Success !")
-            //     this.dialogRef.close({ "status": "success" });
-            //   } else {
-            //     this.loading_status = false;
-            //     this.loading = this.loading_none;
-            //     window.alert(data.res);
-            //   }
-            // }, (err: HttpErrorResponse) => {
-            //   this.loading_status = false;
-            //   this.loading = this.loading_none;
-            //   window.alert("canot submit data, please contact Administrator!")
-            // });
-          } else {
-            this.loading_status = false;
-            this.loading = this.loading_none;
-            window.alert("please select department");
-          }
         } else {
           this.loading_status = false;
           this.loading = this.loading_none;

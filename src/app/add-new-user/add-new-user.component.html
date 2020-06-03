@@ -1,36 +1,49 @@
 <div class="nav-bar">
     <div class="title-body-content">
-        <span class="lb">ເພີມຜູ້ໃຊ້ງານລະບົບໃໝ່</span>
+        <span class="lb boonhome">ເພີ່ມຜູ້ໃຊ້ງານລະບົບໃໝ່</span>
     </div>
     <img class="close_icon" src="assets/images/delete.svg" (click)="close()">
 </div>
 <div class="containner">
     <div class="frm-new-user">
-        <div class="frm-user">
-            <mat-form-field class="form-field" [floatLabel]="'never'">
-                <input matInput placeholder="ຊື່..." [(ngModel)]="user.name">
+        <div class="frm-user boonhome">
+
+            <mat-form-field class="form-field txt-l" [floatLabel]="'never'">
+                <input class="boonhome" matInput placeholder="ຊື່..." required [(ngModel)]="userlogin.name" id="txtname">
             </mat-form-field>
-            <mat-form-field class="form-field" [floatLabel]="'never'" style="margin-left: 5px;">
-                <input matInput placeholder="ນາມສະກຸນ..." [(ngModel)]="user.surname">
-            </mat-form-field><br>
-            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
-                <input type="email" matInput placeholder="example@email.com" [(ngModel)]="usercontact.email">
-            </mat-form-field><br>
-            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
-                <input matInput placeholder="ເບີໂທລະສັບ..." [(ngModel)]="usercontact.phonenumber">
-            </mat-form-field><br>
-            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
-                <input matInput placeholder="ຊື່ເຂົ້າໃຊ້ລະບົບ..." [(ngModel)]="user.username">
-            </mat-form-field><br>
-            <mat-form-field class="form-field" [floatLabel]="'never'">
-                <input type="password" matInput placeholder="ລະຫັດຜ່ານ" [(ngModel)]="passwordText">
+            <mat-form-field class="form-field txt-R" [floatLabel]="'never'" style="margin-left: 6px;">
+                <input class="boonhome" matInput placeholder="ນາມສະກຸນ..." required [(ngModel)]="userlogin.surname" id="txtsurname">
             </mat-form-field>
-            <mat-form-field class="form-field" [floatLabel]="'never'" style="margin-left: 5px;">
-                <input type="password" matInput placeholder="ຢືນຢັນລະຫັດຜ່ານ" [(ngModel)]="confirmpassword">
-            </mat-form-field><br>
-            <button class="frm-btn" mat-flat-button color="primary" (click)="submitUser()">ບັນທຶກ</button>
-            <button class="frm-btn" mat-flat-button (click)="cancelSubmit()"
-                style="background-color:#D32F2F;color: white;">ຍົກເລີກ</button>
+            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
+                <input class="boonhome" type="email" matInput placeholder="example@email.com" [(ngModel)]="usercontact.email">
+            </mat-form-field>
+            <mat-form-field class="form-field txt-l" [floatLabel]="'never'">
+                <input class="boonhome" matInput placeholder="ເບີໂທລະສັບ..." [(ngModel)]="usercontact.phonenumber">
+            </mat-form-field>
+            <mat-form-field class="txt-R" style="margin-left: 6px;">
+                <mat-label class="boonhome">ພະແນກ</mat-label>
+                <select matNativeControl required [(ngModel)]="depart_item" id="depart">
+                    <option *ngFor="let depart of departList" value="{{depart | json}}">{{depart.name}}</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="form-field" [floatLabel]="'never'" style="width: 100%;">
+                <input class="boonhome" matInput placeholder="ຊື່ເຂົ້າໃຊ້ລະບົບ..." required [(ngModel)]="userlogin.username"
+                    id="txtusername">
+            </mat-form-field>
+            <mat-form-field class="form-field txt-l" [floatLabel]="'never'">
+                <input class="boonhome" type="password" matInput placeholder="ລະຫັດຜ່ານ" [(ngModel)]="passwordText" required
+                    id="txtpassword">
+            </mat-form-field>
+            <mat-form-field class="form-field txt-R" [floatLabel]="'never'" style="margin-left: 6px;" required>
+                <input class="boonhome" type="password" matInput placeholder="ຢືນຢັນລະຫັດຜ່ານ" [(ngModel)]="confirmpassword" required
+                    id="txtconfirmpassword">
+            </mat-form-field>
+            <div class="alert alert-danger boonhome" role="alert" *ngIf="showalert">
+                duplicate user!
+            </div>
+            <div class="btn-frame">
+                <button class="frm-btn" mat-flat-button color="primary" (click)="submitUser()">ບັນທຶກ</button>
+            </div>
         </div>
     </div>
 </div>

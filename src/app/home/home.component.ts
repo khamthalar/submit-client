@@ -10,6 +10,7 @@ import { FirbaseServiceService } from '../firbase-service.service';
 
 import {map} from 'rxjs/operators';
 import { Submit_device } from '../submitDevices';
+import { userLogin, userContact } from '../submitDevices';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   submit_device_info:any;
 
   deviceList:any;
+  user:userLogin = new userLogin();
 
   constructor(
     private auth:AuthService,
@@ -34,6 +36,7 @@ export class HomeComponent implements OnInit {
     this.username = sessionStorage.getItem('user_name');
     // this.updateData();
     this.getDeviceList();
+    this.user = JSON.parse(sessionStorage.getItem('user'));
   }
   logout(){
     this.auth.setLogin(false);
@@ -65,16 +68,27 @@ export class HomeComponent implements OnInit {
   }
 
   getDeviceList(){
-    this.firebaseService.getSubmitDevice_list().snapshotChanges().pipe(
-      map(device=>{
-        return device.map(d=>{
+    // this.firebaseService.getSubmitDevice_list_by_user(this.user).snapshotChanges().pipe(
+    //   map(device=>{
+    //     return device.map(d=>{
+    //       const data = d.payload.doc.data() as Submit_device
+    //       data.key = d.payload.doc.id;
+    //       return data;
+    //     });
+    //   })
+    // ).subscribe(devicelist=>{
+    //   this.deviceList = devicelist;
+    // })
+    this.firebaseService.getSubmitDevice_list_by_user(this.user.key).snapshotChanges().pipe(
+      map(device => {
+        return device.map(d => {
           const data = d.payload.doc.data() as Submit_device
           data.key = d.payload.doc.id;
           return data;
         });
       })
-    ).subscribe(devicelist=>{
+    ).subscribe(devicelist => {
       this.deviceList = devicelist;
-    })
+    });
   }
 }
