@@ -43,6 +43,9 @@
                             <ng-template [ngIf]="item.priotity==0">
                                 <div class="discription">ອາການ:{{item.description}}</div>
                             </ng-template>
+                            <div class="request-em discription">
+                                <span>ຜູ້ແຈ້ງ: {{item.request_em.name}} ({{item.request_em.department.name}})</span>
+                            </div>
                             <div class="submit-time">
                                 <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
                                 <span style="margin-top: 5px;">{{item.submit_date | dateAgo}}</span>

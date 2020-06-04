@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
     // ).subscribe(devicelist=>{
     //   this.deviceList = devicelist;
     // })
-    this.firebaseService.getSubmitDevice_list_by_user(this.user.key).snapshotChanges().pipe(
+    this.firebaseService.getSubmitDevice_list_by_user().snapshotChanges().pipe(
       map(device => {
         return device.map(d => {
           const data = d.payload.doc.data() as Submit_device

@@ -68,6 +68,9 @@ body {
 
 .change_log {
     text-align: center;
+    display: grid;
+    justify-items: center;
+    align-items:center;
 }
 
 .device {

@@ -56,7 +56,7 @@ export class FirbaseServiceService {
     this.ags.collection("user").add(JSON.parse(JSON.stringify(user)));
   }
   getActiveUsers(){
-    return this.ags.collection("user",ref=>ref.where("active","==",1));
+    return this.ags.collection("user",ref=>ref.where("active","==",1).orderBy('department.name',"asc"));
   }
   changeUserStatus(key:string,status:string,active:number){
     this.ags.collection("user").doc(key).update({'status':status,'active':active})
@@ -69,9 +69,11 @@ export class FirbaseServiceService {
   getSubmitDevice_list(){
     return this.ags.collection("DevicesSubmitted",ref=>ref.where('success','==',0).orderBy('priotity','desc'));
   }
-  getSubmitDevice_list_by_user(key:string){
+  getSubmitDevice_list_by_user(){
     return this.ags.collection("DevicesSubmitted",ref=>ref
-                .where("success","==",1)).doc("").collection("");
+                .where("success","==",0)
+                .orderBy('priotity','desc')
+    );
   }
 
   updateItem(key:string,data:any){
