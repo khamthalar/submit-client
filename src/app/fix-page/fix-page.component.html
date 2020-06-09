@@ -21,7 +21,7 @@
   </div>
   <div class="description">ອາການ: {{data.description}} <span style="color: red;"
       *ngIf="data.priotity==1">(ສ້ອມແປງດ່ວນ)</span></div>
-  <div class="em">ຜູ້ແຈ້ງ: {{data.request_em.name}} ({{data.request_em.department.name}})</div>
+  <div class="em">ຜູ້ແຈ້ງ: {{data.request_em.name}}, ({{data.request_em.department.name}})</div>
   <div class="fix_status">ສະຖານະ: {{data.fix_info.status}}</div>
 
   <mat-tab-group #tab animationDuration="0ms" [(selectedIndex)]=selectedIndex>
