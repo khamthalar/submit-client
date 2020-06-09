@@ -37,13 +37,15 @@
                 <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
             </span>
         </div>
-        <input (keyup)="applyFilter($event.target.value)" type="text" style="outline: none;box-shadow: none !important;" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+        <input (keyup)="applyFilter($event.target.value)" type="text" style="outline: none;box-shadow: none !important;"
+            class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
         <div class="invalid-feedback">
             Please choose a username.
         </div>
     </div>
 
-    <mat-table #table [dataSource]="dataSource">
+
+    <!-- <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="device">
             <mat-header-cell *matHeaderCellDef> device </mat-header-cell>
@@ -77,11 +79,79 @@
         </ng-container>
         <ng-container matColumnDef="Department">
             <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.department}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element.request_em.department.name}}</mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    </mat-table> -->
+    
+<div class="example-container mat-elevation-z8 none-outline" #TABLE>
+    <table mat-table #table [dataSource]="dataSource">
+  
+      <!-- device Column -->
+      <ng-container matColumnDef="device1">
+        <th mat-header-cell *matHeaderCellDef> Device </th>
+        <td mat-cell *matCellDef="let element" class="item-content">
+            <div class="item-ico">
+                <ng-template [ngIf]="element.device=='Computer'">
+                    <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                </ng-template>
+                <ng-template [ngIf]="element.device=='Internet'">
+                    <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                </ng-template>
+                <ng-template [ngIf]="element.device=='Printer'">
+                    <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                </ng-template>
+                <ng-template
+                    [ngIf]="element.device!='Computer' && element.device!='Internet' && element.device!='Printer'">
+                    <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                </ng-template>
+            </div>
+            <div class="item-des">
+                <div class="device">
+                    {{element.device}}
+                </div>
+                <div class="discription">ອາການ:{{element.description}}</div>
+                <div class="submit-time">
+                    <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
+                    <span style="margin-top: 5px;">{{element.submit_date | date:'dd MMM yyyy h:mm a'}}</span>
+                </div>
+            </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="device">
+        <th mat-header-cell *matHeaderCellDef hidden> Device </th>
+        <td mat-cell *matCellDef="let element" hidden> {{element.device}}</td>
+      </ng-container>
+  
+      <!-- issue Column -->
+      <ng-container matColumnDef="issue">
+        <th mat-header-cell *matHeaderCellDef hidden> Issue </th>
+        <td mat-cell *matCellDef="let element" hidden> {{element.description}} </td>
+      </ng-container>
+  
+      <!-- department Column -->
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef> Department </th>
+        <td mat-cell *matCellDef="let element" class="depart"> {{element.request_em.department.name}} </td>
+      </ng-container>
+  
+      <!-- submit_date Column -->
+      <ng-container matColumnDef="submit_date">
+        <th mat-header-cell *matHeaderCellDef hidden> Submit Date </th>
+        <td mat-cell *matCellDef="let element" hidden> {{element.submit_date | date:'dd MMM yyyy h:mm a'}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+
+
+    <button (click)="export()">export</button>
+
 
     <mat-paginator [length]="5" [pageSize]="10" [pageSizeOptions]="[10,15, 20, 25]">
     </mat-paginator>

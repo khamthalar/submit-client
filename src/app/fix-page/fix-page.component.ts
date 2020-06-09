@@ -23,6 +23,8 @@ export class FixPageComponent implements OnInit {
   em_log: EmLog = new EmLog();
   usercontact: ContactInfo = new ContactInfo();
   fix_em: fix_em = new fix_em();
+  selectedIndex = 0;
+
   // selected_rd ="";
   // default_rd = "";
   cb_unchecked = true;
@@ -30,6 +32,7 @@ export class FixPageComponent implements OnInit {
   statusText: string;
   deviceStatusText: string;
   fix_em_name: string;
+  fix_note:string;
 
   data: any;
 
@@ -40,6 +43,7 @@ export class FixPageComponent implements OnInit {
   @ViewChild('txtStatus') txtstatus: ElementRef;
   @ViewChild('txtDevice') txtdevice: ElementRef;
   @ViewChild('btnApply') btnapply: ElementRef;
+  @ViewChild('tab') tab_page: ElementRef;
 
   constructor(
     public dialogRef: MatDialogRef<FixPageComponent>,
@@ -64,13 +68,13 @@ export class FixPageComponent implements OnInit {
       this.fix_em_name = this.data.fix_em.em_name;
     }
     // this.em_log.contact_info = this.usercontact;
-    this.txtstatus.nativeElement.disabled = true;
-    this.txtdevice.nativeElement.disabled = true;
+    // this.txtstatus.nativeElement.disabled = true;
+    // this.txtdevice.nativeElement.disabled = true;
     this.btnapply.nativeElement.disabled = true;
 
     this.statusText = this.data.item_status;
     this.deviceStatusText = this.data.fix_info.device_status;
-    this.fix_info.fix_note = this.data.fix_info.fix_note;
+    this.fix_note = this.data.fix_info.fix_note;
 
     // if (this.data.fix_info.status == "ລໍຖ້າສ້ອມແປງ") {
     //   this.default_rd = "ລໍຖ້າສ້ອມແປງ";
@@ -92,7 +96,10 @@ export class FixPageComponent implements OnInit {
     this.txtdevice.nativeElement.focus();
   }
   onEdit() {
-    if (this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status) {
+    if (this.fix_info.fix_note == "") {
+      this.fix_info.fix_note = null;
+    }
+    if (this.statusText != this.data.item_status || this.deviceStatusText != this.data.fix_info.device_status || this.fix_info.fix_note != this.data.fix_info.fix_note) {
       this.btnapply.nativeElement.disabled = false;
     } else {
       this.btnapply.nativeElement.disabled = true;
@@ -102,12 +109,26 @@ export class FixPageComponent implements OnInit {
     this.dialogRef.close("data");
   }
   apply() {
-    this.txtdevice.nativeElement.disabled = true;
-    this.txtstatus.nativeElement.disabled = true;
-    this.btnapply.nativeElement.disabled = true;
+    if (this.fix_note == null || this.fix_note == this.data.fix_info.fix_note) {
+      this.btnapply.nativeElement.disabled = true;
 
-    this.submitData();
-    this.updatedata(this.data.key);
+      this.submitData();
+      this.updatedata(this.data.key);
+    } else {
+      if (this.deviceStatusText != "wait for review") {
+        this.btnapply.nativeElement.disabled = true;
+
+        this.submitData();
+        this.updatedata(this.data.key);
+      } else {
+        window.alert("ຕ້ອງໃສ່ສາເຫດຂອງອຸປະກອນກ່ອນ");
+        this.selectedIndex = 0;
+        this.txtdevice.nativeElement.focus();
+      }
+    }
+    // this.txtdevice.nativeElement.disabled = true;
+    // this.txtstatus.nativeElement.disabled = true;
+
   }
   // rd_selected(rd: string) {
   //   this.rd1 = false;
@@ -130,10 +151,9 @@ export class FixPageComponent implements OnInit {
   //   }
   // }
 
-  submitData() {
+  setLog(em_id:string,em_name:string) {
     if (this.statusText == "wait for review") {
-      let em_id = sessionStorage.getItem('user_id');
-      let em_name = sessionStorage.getItem('user_name');
+
       if (this.deviceStatusText != "wait for review") {
 
         this.fix_info.em_log.push(this.getEmLog_item(
@@ -247,27 +267,71 @@ export class FixPageComponent implements OnInit {
 
     }
   }
-  btnOk_click() {
+  submitData() {
     let em_id = sessionStorage.getItem('user_id');
     let em_name = sessionStorage.getItem('user_name');
-    this.fix_info = this.data.fix_info;
-    if (this.btnapply.nativeElement.disabled = true) {
-      if (this.cb_unchecked == false) {
-        this.fix_info.em_log.push(this.getEmLog_item(
-          em_id, em_name, 'close job', Date.now()
-        ));
-        this.firebaseService.updateItem(this.data.key, { "success": 1 ,"fix_info":this.fix_info})
-      }
+    if (this.fix_note == null || this.fix_note == this.data.fix_info.fix_note) {
+      this.setLog(em_id,em_name);
     } else {
-      this.submitData();
-      if (this.cb_unchecked == false) {
-        this.fix_info.em_log.push(this.getEmLog_item(
-          em_id, em_name, 'close job', Date.now()
-        ));
-        this.firebaseService.updateItem(this.data.key, { "success": 1 ,"fix_info":this.fix_info})
-      }
+      this.setLog(em_id,em_name);
+      this.fix_info.em_log.push(this.getEmLog_item(
+        em_id, em_name, 'update ວິທິການສ້ອມແປງ', Date.now()
+      ));
+      this.fix_info.fix_note = this.fix_note;
+      this.firebaseService.updateItem(this.data.key, { "fix_info": this.fix_info });
     }
-    this.dialogRef.close("data");
+  }
+  btnOk_click() {
+    if (this.fix_note == null || this.fix_note == this.data.fix_info.fix_note) {
+      let em_id = sessionStorage.getItem('user_id');
+      let em_name = sessionStorage.getItem('user_name');
+      this.fix_info = this.data.fix_info;
+      if (this.btnapply.nativeElement.disabled == true) {
+        if (this.cb_unchecked == false) {
+          this.fix_info.em_log.push(this.getEmLog_item(
+            em_id, em_name, 'close job', Date.now()
+          ));
+          this.firebaseService.updateItem(this.data.key, { "success": 1, "fix_info": this.fix_info })
+        }
+      } else {
+        this.submitData();
+        if (this.cb_unchecked == false) {
+          this.fix_info.em_log.push(this.getEmLog_item(
+            em_id, em_name, 'close job', Date.now()
+          ));
+          this.firebaseService.updateItem(this.data.key, { "success": 1, "fix_info": this.fix_info })
+        }
+      }
+      this.dialogRef.close("data");
+    } else {
+      if (this.deviceStatusText == "wait for review") {
+        window.alert("ຕ້ອງໃສ່ສາເຫດຂອງອຸປະກອນກ່ອນ");
+        this.selectedIndex = 0;
+        this.txtdevice.nativeElement.focus();
+      } else {
+        let em_id = sessionStorage.getItem('user_id');
+        let em_name = sessionStorage.getItem('user_name');
+        this.fix_info = this.data.fix_info;
+        if (this.btnapply.nativeElement.disabled == true) {
+          if (this.cb_unchecked == false) {
+            this.fix_info.em_log.push(this.getEmLog_item(
+              em_id, em_name, 'close job', Date.now()
+            ));
+            this.firebaseService.updateItem(this.data.key, { "success": 1, "fix_info": this.fix_info })
+          }
+        } else {
+          this.submitData();
+          if (this.cb_unchecked == false) {
+            this.fix_info.em_log.push(this.getEmLog_item(
+              em_id, em_name, 'close job', Date.now()
+            ));
+            this.firebaseService.updateItem(this.data.key, { "success": 1, "fix_info": this.fix_info })
+          }
+        }
+        this.dialogRef.close("data");
+      }
+
+    }
   }
   getEmLog_item(id: string, name: string, action: string, issus_time: number): EmLog {
     let em: EmLog = new EmLog();

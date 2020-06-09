@@ -14,17 +14,11 @@ export class EmLog {
     issus_time:number;
 }
 
-export class Fixnote {
-    description: string;
-    start_time:number;
-    end_time: number;
-}
-
 export class FixInfo {
     status: string;
     em_log: EmLog[];
     device_status: string;
-    fix_note: Fixnote ;
+    fix_note: String ;
 }
 export class fix_em{
     em_id: string;

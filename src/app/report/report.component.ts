@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource, MatPaginator, MatSort, MatDatepickerInputEvent } from '@angular/material';
 import { FirbaseServiceService } from '../firbase-service.service';
 import { map } from 'rxjs/operators';
 import { Submit_device } from '../submitDevices';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-report',
@@ -15,8 +17,11 @@ export class ReportComponent implements OnInit {
   deviceList: Submit_device[];
 
   constructor(private router: Router, private firebaseService: FirbaseServiceService) { }
-  displayedColumns = ['device', 'Department'];
+  // displayedColumns = ['device', 'Department'];
+  displayedColumns = ['device1','device', 'issue', 'department', 'submit_date'];
   dataSource = new MatTableDataSource(this.deviceList);
+
+  fileName = 'lsw_device_fix_ex' + Date.now() + ".xlsx";
 
   minDate: Date;
   maxDate: Date;
@@ -24,6 +29,7 @@ export class ReportComponent implements OnInit {
   startDate: Date;
   endDate: Date;
 
+  @ViewChild('TABLE') table: ElementRef;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -83,20 +89,21 @@ export class ReportComponent implements OnInit {
       });
     }
   }
+
+  //export to excel
+  export() {
+    // let element = document.getElementById('excel-table');
+    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    // ws['!cols'][0]={hidden:true};
+    
+    ws['!cols'] = [];
+    ws['!cols'][0] = { hidden:true };
+    
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, this.fileName);
+  }
 }
-
-// export interface Element {
-//   position: number;
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-// }
-
-// const ELEMENT_DATA: Element[] = [
-//   { position: 1, firstName: 'John', lastName: 'Doe', email: 'john@gmail.com' },
-//   { position: 2, firstName: 'Mike', lastName: 'Hussey', email: 'mike@gmail.com' },
-//   { position: 3, firstName: 'Ricky', lastName: 'Hans', email: 'ricky@gmail.com' },
-//   { position: 4, firstName: 'Martin', lastName: 'Kos', email: 'martin@gmail.com' },
-//   { position: 5, firstName: 'Tom', lastName: 'Paisa', email: 'tom@gmail.com' },
-//   { position: 6, firstName: 'Test', lastName: 'Last name', email: 'example@email.com' }
-// ];

@@ -55,17 +55,27 @@
     -ms-user-select: none;
     user-select: none;
 }
-
+.none-outline {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
 .device-item{
     /* position: relative; */
     display: flex;
 }
 .item-content{
-    position: relative;
-    display: flex;
-    flex-grow: 1;
-    margin: 0;
-    padding:0;
+    /* position: relative; */
+    /* display: flex; */
+    /* flex-grow: 1; */
+    padding:2px;
+}
+.item-ico, .item-des{
+    float: left;
+}
+.depart{
+    margin-top: -1px;
 }
 .change_log{
     text-align: center;
@@ -97,3 +107,6 @@
     width:200px ;
     float: left;
 }
+table {
+    width: 100%;
+  }

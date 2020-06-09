@@ -6,7 +6,7 @@
     color: white;
     text-align: center;
     position: relative;
-    min-width: 300px;
+    width: 400px;
 }
 
 .title-body-content {
@@ -40,8 +40,8 @@ input[type="text"], textarea {
 
 .item-status {
     width: 100%;
-    padding-top: 15px;
-    margin-top: 17px;
+    /* padding-top: 15px;
+    margin-top: 17px; */
 }
 .item-box{
     position: relative;
@@ -49,6 +49,8 @@ input[type="text"], textarea {
 
 .content{
     padding:10px;
+    max-height: calc(100vh - 80px);
+    overflow: scroll;
 }
 .btn-cus{
     outline: none;
@@ -128,7 +130,12 @@ textarea:disabled{
 .hide{
     display: none;
 }
-
+.txt-fix{
+    margin-bottom: 9px;
+    width: 100%;
+    margin-top: 17px;
+    padding-top: 5px;
+}
 .noselect {
     cursor: default;
     -webkit-touch-callout: none;
@@ -137,4 +144,9 @@ textarea:disabled{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+@media(max-width:450px){
+    .nav-bar{
+        width: 100%;
+    }
 }

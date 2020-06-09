@@ -35,7 +35,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane{
     max-width: 90vw !important;
 }
-@media(max-width:400px){
+@media(max-width:450px){
     .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane .mat-dialog-container{
         border-radius: 0 !important;
     }

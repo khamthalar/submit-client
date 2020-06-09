@@ -4,7 +4,7 @@
   </div>
   <img class="close_icon" src="assets/images/delete.svg" (click)="close()">
 </div>
-<div class="content">
+<div class="content boonhome">
   <div class="image">
     <div *ngIf="data.device=='Computer'">
       <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 100px;">
@@ -21,45 +21,40 @@
   </div>
   <div class="description">ອາການ: {{data.description}} <span style="color: red;"
       *ngIf="data.priotity==1">(ສ້ອມແປງດ່ວນ)</span></div>
-  <div class="em">ຜູ້ແຈ້ງ: {{data.u_name}}, ພະແນກ {{data.department}}</div>
+  <div class="em">ຜູ້ແຈ້ງ: {{data.request_em.name}} ({{data.request_em.department.name}})</div>
   <div class="fix_status">ສະຖານະ: {{data.fix_info.status}}</div>
-  <!-- <div class="fix-status">
-    <div class="rd" (click)="rd_selected('ລໍຖ້າສ້ອມແປງ')">
-      <div class="btn-rd">
-        <div [ngClass]="{'rd-selected':rd1}"></div>
+
+  <mat-tab-group #tab animationDuration="0ms" [(selectedIndex)]=selectedIndex>
+    <mat-tab class="boonhome" label="ຂໍ້ມູນພື້ນຖານ">
+      <div class="item-box">
+        <!-- <button type="button" class="btn-cus" (click)="edit_item_status()"><i class="fa fa-plus"></i>
+          ຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ</button> -->
+          <label class="boonhome">ຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ</label>
+        <textarea #txtStatus rows="3" class="item-status boonhome" (keyup)="onEdit()" id="item-status"
+          [(ngModel)]="statusText">{{statusText}}</textarea>
       </div>
-      <div>ລໍຖ້າສ້ອມແປງ</div>
-    </div>
-    <div class="rd" (click)="rd_selected('ກຳລັງສ້ອມແປງ')">
-      <div class="btn-rd">
-        <div [ngClass]="{'rd-selected': rd2}"></div>
+      <div class="item-box">
+        <!-- <button type="button" class="btn-cus" (click)="editDevice_status()"><i class="fa fa-plus"></i> ສາເຫດ</button> -->
+        <label class="boonhome">ສາເຫດ</label>
+        <textarea #txtDevice rows="3" class="item-status boonhome" id="item-status" (keyup)="onEdit()"
+          [(ngModel)]="deviceStatusText">{{deviceStatusText}}</textarea>
       </div>
-      <div>ກຳລັງສ້ອມແປງ</div>
-    </div>
-    <div class="rd" (click)="rd_selected('ສ້ອມແປງແລ້ວ')">
-      <div class="btn-rd">
-        <div [ngClass]="{'rd-selected': rd3}"></div>
-      </div>
-      <div>ສ້ອມແປງແລ້ວ</div>
-    </div>
-  </div> -->
-  <div class="item-box">
-    <button type="button" class="btn-cus" (click)="edit_item_status()"><i class="fa fa-plus"></i>
-      ຂໍ້ຄວາມເຖິງຜູ້ແຈ້ງ</button>
-    <textarea #txtStatus rows="3" class="item-status" (keyup)="onEdit()" id="item-status"
-      [(ngModel)]="statusText">{{statusText}}</textarea>
-  </div>
-  <div class="item-box">
-    <button type="button" class="btn-cus" (click)="editDevice_status()"><i class="fa fa-plus"></i> ສາເຫດ</button>
-    <textarea #txtDevice rows="3" class="item-status" id="item-status" (keyup)="onEdit()"
-      [(ngModel)]="deviceStatusText">{{deviceStatusText}}</textarea>
-  </div>
-  <button type="button" class="btn btn-success">ວິທີສ້ອມແປງ</button>
-  <div class="fix_em">ຜູ້ຮັບຜິດຊອບ:{{fix_em_name}}</div>
-  <div class="fix_success">
+    </mat-tab>
+
+    <mat-tab class="boonhome" label="ວິທີການສ້ອມແປງ">
+      <textarea rows="8" class="txt-fix boonhome" id="item-status" [(ngModel)]="fix_note" (keyup)="onEdit()"></textarea>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- <button type="button" class="btn btn-success">ວິທີສ້ອມແປງ</button> -->
+
+
+
+  <div class="fix_em boonhome">ຜູ້ຮັບຜິດຊອບ:{{fix_em_name}}</div>
+  <div class="fix_success boonhome">
     <div class="cb_success" (click)="cb_click()">
       <img src="assets/images/checked.svg" class="img-responsive" alt="Image" style="width: 20px;"
-      [ngClass]="{'hide': cb_unchecked}">
+        [ngClass]="{'hide': cb_unchecked}">
       <div class="unCkeck-ico" [ngClass]="{'hide': !cb_unchecked}"></div>
       <div class="cb_label noselect" style="margin-left: 3px;">ສ້ອມແປງສຳເລັດ</div>
     </div>
@@ -68,7 +63,7 @@
 
   </div>
   <!-- <pre>{{data | json}}</pre> -->
-  <div class="bottom-btn">
+  <div class="bottom-btn boonhome">
     <button (click)="btnOk_click()" class="btn-ok">ok</button>
     <button #btnApply (click)="apply()" class="btn-apply">apply</button>
   </div>
