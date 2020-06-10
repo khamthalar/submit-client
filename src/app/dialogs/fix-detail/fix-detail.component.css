@@ -1,0 +1,38 @@
+.nav-bar {
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 56px;
+    background-color: brown;
+    color: white;
+    text-align: center;
+    position: relative;
+    min-width: 300px;
+}
+
+.title-body-content {
+    vertical-align: middle;
+    padding-top: 12px;
+}
+
+.lb {
+    font-size: 20px !important;
+    padding-left: 40px !important;
+    padding-right: 40px;
+}
+
+.close_icon {
+    width: 20px;
+    position: absolute;
+    right: 16px;
+    top: 18px;
+}
+
+.content{
+    padding:10px;
+}
+
+.dialog-centent{
+    font-size: 14px;
+    margin: 0 !important;
+    padding: 0 !important;
+}

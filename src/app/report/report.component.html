@@ -3,7 +3,7 @@
         <div class="home-icon" (click)="gotoDeskboard()">
             <img src="assets/images/home-icon.svg" class="img-responsive" alt="Image" style="width: 33px;">
         </div>
-        <div class="nav-title">Report</div>
+        <div class="nav-title boonhome">Report</div>
         <!-- <div class="nav-menu-icon">
             <div class="filter-icon">
                 <img src="assets/images/del_filter.svg" class="img-responsive" alt="Image" style="height: 33px;">
@@ -13,7 +13,7 @@
 </div>
 <div class="content">
 
-    <div class="date_filter">
+    <!-- <div class="date_filter">
         <mat-form-field class="startDate">
             <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date"
                 (dateChange)="startDateSelect($event)">
@@ -29,8 +29,6 @@
     </div>
 
 
-    <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
-
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroupPrepend">
@@ -39,122 +37,122 @@
         </div>
         <input (keyup)="applyFilter($event.target.value)" type="text" style="outline: none;box-shadow: none !important;"
             class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
-        <div class="invalid-feedback">
+        <div class="invalid-feedback boonhome">
             Please choose a username.
         </div>
+    </div> -->
+
+
+    <div class="content-header">
+        <div class="button">
+            <button class="btn-filter none-outline boonhome" (click)="setOpenFilter()">
+                <img src="assets/svg/filter.svg" width="20">
+                &nbsp;Filter
+            </button>
+        </div>
+        <div class="button">
+            <button (click)="export()" class="btn_excel none-outline boonhome">
+                <img src="assets/svg/microsoft_excel.svg" width="25">
+                export</button>
+        </div>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel class="expansion none-outline" [expanded]="openfilter">
+            <!-- <mat-expansion-panel-header class="expansion-header">
+                <mat-panel-title>
+                    <img src="assets/svg/filter.svg" width="20">
+                    &nbsp;Filter
+                </mat-panel-title>
+            </mat-expansion-panel-header> -->
+
+            <mat-form-field>
+                <mat-label>First name</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input matInput type="number" min="1">
+            </mat-form-field>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+    <div class="example-container mat-elevation-z8 none-outline" #TABLE>
+        <table mat-table #table [dataSource]="dataSource">
+
+            <!-- device Column -->
+            <ng-container matColumnDef="device1">
+                <th mat-header-cell *matHeaderCellDef class="th-device boonhome"> Device </th>
+                <td mat-cell *matCellDef="let element" class="item-content"
+                    (click)="show_fix_detail(element.fix_info.fix_note)">
+                    <div class="item-ico">
+                        <ng-template [ngIf]="element.device=='Computer'">
+                            <img src="assets/images/computer.svg" class="img-responsive" alt="Image"
+                                style="width: 60px;">
+                        </ng-template>
+                        <ng-template [ngIf]="element.device=='Internet'">
+                            <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                        </ng-template>
+                        <ng-template [ngIf]="element.device=='Printer'">
+                            <img src="assets/images/printer.svg" class="img-responsive" alt="Image"
+                                style="width: 60px;">
+                        </ng-template>
+                        <ng-template
+                            [ngIf]="element.device!='Computer' && element.device!='Internet' && element.device!='Printer'">
+                            <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
+                        </ng-template>
+                    </div>
+                    <div class="item-des">
+                        <div class="device boonhome">
+                            {{element.device}}
+                        </div>
+                        <div class="discription boonhome">ອາການ:{{element.description}}</div>
+                        <div class="submit-time boonhome">
+                            <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
+                            <span style="margin-top: 5px;">{{element.submit_date | date:'dd MMM yyyy h:mm a'}}</span>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="device">
+                <th mat-header-cell *matHeaderCellDef hidden> Device </th>
+                <td mat-cell *matCellDef="let element" hidden> {{element.device}}</td>
+            </ng-container>
+
+            <!-- issue Column -->
+            <ng-container matColumnDef="issue">
+                <th mat-header-cell *matHeaderCellDef hidden> Issue </th>
+                <td mat-cell *matCellDef="let element" hidden> {{element.description}} </td>
+            </ng-container>
+
+            <!-- department Column -->
+            <ng-container matColumnDef="department">
+                <th mat-header-cell *matHeaderCellDef class="th-depart boonhome"> Department </th>
+                <td mat-cell *matCellDef="let element" class="depart boonhome"
+                    (click)="show_fix_detail(element.fix_info.fix_note)"> {{element.request_em.department.name}} </td>
+            </ng-container>
+
+            <!-- submit_date Column -->
+            <ng-container matColumnDef="submit_date">
+                <th mat-header-cell *matHeaderCellDef hidden> Submit Date </th>
+                <td mat-cell *matCellDef="let element" hidden> {{element.submit_date | date:'dd MMM yyyy h:mm a'}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
     </div>
 
 
-    <!-- <mat-table #table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="device">
-            <mat-header-cell *matHeaderCellDef> device </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-                <div class="item-ico">
-                    <ng-template [ngIf]="element.device=='Computer'">
-                        <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                    </ng-template>
-                    <ng-template [ngIf]="element.device=='Internet'">
-                        <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                    </ng-template>
-                    <ng-template [ngIf]="element.device=='Printer'">
-                        <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                    </ng-template>
-                    <ng-template
-                        [ngIf]="element.device!='Computer' && element.device!='Internet' && element.device!='Printer'">
-                        <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                    </ng-template>
-                </div>
-                <div class="item-des">
-                    <div class="device">
-                        {{element.device}}
-                    </div>
-                    <div class="discription">ອາການ:{{element.description}}</div>
-                    <div class="submit-time">
-                        <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
-                        <span style="margin-top: 5px;">{{element.submit_date | date:'dd MMM yyyy h:mm a'}}</span>
-                    </div>
-                </div>
-            </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="Department">
-            <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.request_em.department.name}}</mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table> -->
-    
-<div class="example-container mat-elevation-z8 none-outline" #TABLE>
-    <table mat-table #table [dataSource]="dataSource">
-  
-      <!-- device Column -->
-      <ng-container matColumnDef="device1">
-        <th mat-header-cell *matHeaderCellDef> Device </th>
-        <td mat-cell *matCellDef="let element" class="item-content">
-            <div class="item-ico">
-                <ng-template [ngIf]="element.device=='Computer'">
-                    <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                </ng-template>
-                <ng-template [ngIf]="element.device=='Internet'">
-                    <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                </ng-template>
-                <ng-template [ngIf]="element.device=='Printer'">
-                    <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                </ng-template>
-                <ng-template
-                    [ngIf]="element.device!='Computer' && element.device!='Internet' && element.device!='Printer'">
-                    <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 60px;">
-                </ng-template>
-            </div>
-            <div class="item-des">
-                <div class="device">
-                    {{element.device}}
-                </div>
-                <div class="discription">ອາການ:{{element.description}}</div>
-                <div class="submit-time">
-                    <img src="assets/images/clock-gray.svg" style="width: 10px; margin-bottom: 2px;">
-                    <span style="margin-top: 5px;">{{element.submit_date | date:'dd MMM yyyy h:mm a'}}</span>
-                </div>
-            </div>
-        </td>
-      </ng-container>
+    <div class="foot_page">
+        <div class="paginator boonhome">
+            <mat-paginator [length]="5" [pageSize]="10" [pageSizeOptions]="[10,15, 20, 25]">
+            </mat-paginator>
+        </div>
+    </div>
 
-      <ng-container matColumnDef="device">
-        <th mat-header-cell *matHeaderCellDef hidden> Device </th>
-        <td mat-cell *matCellDef="let element" hidden> {{element.device}}</td>
-      </ng-container>
-  
-      <!-- issue Column -->
-      <ng-container matColumnDef="issue">
-        <th mat-header-cell *matHeaderCellDef hidden> Issue </th>
-        <td mat-cell *matCellDef="let element" hidden> {{element.description}} </td>
-      </ng-container>
-  
-      <!-- department Column -->
-      <ng-container matColumnDef="department">
-        <th mat-header-cell *matHeaderCellDef> Department </th>
-        <td mat-cell *matCellDef="let element" class="depart"> {{element.request_em.department.name}} </td>
-      </ng-container>
-  
-      <!-- submit_date Column -->
-      <ng-container matColumnDef="submit_date">
-        <th mat-header-cell *matHeaderCellDef hidden> Submit Date </th>
-        <td mat-cell *matCellDef="let element" hidden> {{element.submit_date | date:'dd MMM yyyy h:mm a'}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
-
-
-
-    <button (click)="export()">export</button>
-
-
-    <mat-paginator [length]="5" [pageSize]="10" [pageSizeOptions]="[10,15, 20, 25]">
-    </mat-paginator>
 </div>
-
-<pre>{{deviceList | json}}</pre>

@@ -110,3 +110,41 @@
 table {
     width: 100%;
   }
+.btn_excel, .btn-filter{
+    border: 0;
+    padding: 11px 15px;
+    border-radius: 5px;
+}
+.btn_excel{
+    background-color: rgba(2, 136, 42, 0.267);
+}
+.btn-filter{
+    background-color: rgba(172, 175, 173, 0.267);
+}
+/* .foot_page{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+} */
+.expansion, .content-header{
+    padding-top: 5px;
+}
+.content-header{
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+.expansion-header{
+    width: 120px !important;
+    background-color: rgba(172, 175, 173, 0.267);
+}
+
+.th-device, .th-depart{
+    background-color: rgba(63, 62, 62, 0.507);
+    color: white;
+}
+.th-depart{
+    border-radius: 0 15px 0 0;
+}
+.th-device{
+    border-radius: 15px 0 0 0;
+}

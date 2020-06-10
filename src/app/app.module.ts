@@ -35,6 +35,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule, MatInputModule, MatTableModule } from '@angular/material';
 import { AdminSetupComponent } from './admin-setup/admin-setup.component';
 import { AddNewUserComponent } from './add-new-user/add-new-user.component';
+import { FixDetailComponent } from './dialogs/fix-detail/fix-detail.component';
 
 
 
@@ -56,7 +57,8 @@ import { AddNewUserComponent } from './add-new-user/add-new-user.component';
     EditLogComponent,
     ReportComponent,
     AdminSetupComponent,
-    AddNewUserComponent
+    AddNewUserComponent,
+    FixDetailComponent
     
   ],
   imports: [
@@ -77,6 +79,6 @@ import { AddNewUserComponent } from './add-new-user/add-new-user.component';
   exports: [CommonModule, MatToolbarModule, MatInputModule, MatTableModule],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents:[AdminSettingComponent,UserSettingDialogComponent,FixPageComponent,EditLogComponent,AddNewUserComponent]
+  entryComponents:[AdminSettingComponent,UserSettingDialogComponent,FixPageComponent,EditLogComponent,AddNewUserComponent,FixDetailComponent]
 })
 export class AppModule { }
