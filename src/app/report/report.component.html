@@ -58,22 +58,72 @@
     </div>
     <mat-accordion>
         <mat-expansion-panel class="expansion none-outline" [expanded]="openfilter">
-            <!-- <mat-expansion-panel-header class="expansion-header">
-                <mat-panel-title>
-                    <img src="assets/svg/filter.svg" width="20">
-                    &nbsp;Filter
-                </mat-panel-title>
-            </mat-expansion-panel-header> -->
-
-            <mat-form-field>
-                <mat-label>First name</mat-label>
-                <input matInput>
+            <div class="filter-body">
+                <div class="filter-from-date">
+                    <mat-form-field class="startDate" style="width: 0px; height: 0; padding: 0; margin: 0;">
+                        <input matInput [max]="maxDate" [matDatepicker]="fromDate" placeholder="Choose a date"
+                            (dateChange)="startDateSelect($event)">
+                        <mat-datepicker-toggle matSuffix [for]="fromDate" hidden></mat-datepicker-toggle>
+                        <mat-datepicker #fromDate></mat-datepicker>
+                    </mat-form-field>
+                    <button (click)="fromDate.open()" class="btn-date">
+                        <div class="btn-date-inner">
+                            <div class="date-lable boonhome"><span
+                                    *ngIf="startDate===null">ເລືອກວັນທີ</span>{{startDate | date:'dd MMM yyyy'}}</div>
+                            <div class="date-icon">
+                                <mat-icon>event</mat-icon>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="filter-to-date">
+                    <mat-form-field class="startDate" style="width: 0px; height: 0; padding: 0; margin: 0;">
+                        <input matInput [min]="minDate" [matDatepicker]="toDate" placeholder="Choose a date"
+                            (dateChange)="endDateSelect($event)">
+                        <mat-datepicker-toggle matSuffix [for]="toDate" hidden></mat-datepicker-toggle>
+                        <mat-datepicker #toDate></mat-datepicker>
+                    </mat-form-field>
+                    <button (click)="toDate.open()" class="btn-date">
+                        <div class="btn-date-inner">
+                            <div class="date-lable boonhome"><span
+                                    *ngIf="endDate===null">ເລືອກວັນທີ</span>{{endDate | date:'dd MMM yyyy'}}</div>
+                            <div class="date-icon">
+                                <mat-icon>event</mat-icon>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="depart">
+                    <input [(ngModel)]="depart" type="text" style="outline: none;box-shadow: none !important;" class="form-control"
+                        id="deaprt" aria-describedby="inputGroupPrepend" placeholder="ພະແນກ">
+                </div>
+                <div class="input-group search">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+                        </span>
+                    </div>
+                    <input (keyup)="applyFilter($event.target.value)" type="text" style="outline: none;box-shadow: none !important;" class="form-control boonhome"
+                        id="search" aria-describedby="inputGroupPrepend">
+                </div>
+            </div>
+            <div class="filter-btn">
+                <button class="clear-filter btn noselect none-outline" (click)="clearFilter()" style="margin-right: 5px;">clear filter</button>
+                <button class="apply-filter btn noselect none-outline" (click)="apply_click()">apply</button>
+            </div>
+            <!-- <mat-form-field class="startDate">
+                <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date"
+                    (dateChange)="startDateSelect($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+            <mat-form-field class="endDate">
+                <input matInput [min]="minDate" [matDatepicker]="picker2" placeholder="Choose a date"
+                    (dateChange)="endDateSelect($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field> -->
 
-            <mat-form-field>
-                <mat-label>Age</mat-label>
-                <input matInput type="number" min="1">
-            </mat-form-field>
         </mat-expansion-panel>
     </mat-accordion>
 
@@ -84,7 +134,7 @@
 
             <!-- device Column -->
             <ng-container matColumnDef="device1">
-                <th mat-header-cell *matHeaderCellDef class="th-device boonhome"> Device </th>
+                <th mat-header-cell *matHeaderCellDef class="th-device boonhome"> ອຸປະກອນ </th>
                 <td mat-cell *matCellDef="let element" class="item-content"
                     (click)="show_fix_detail(element.fix_info.fix_note)">
                     <div class="item-ico">
@@ -130,7 +180,7 @@
 
             <!-- department Column -->
             <ng-container matColumnDef="department">
-                <th mat-header-cell *matHeaderCellDef class="th-depart boonhome"> Department </th>
+                <th mat-header-cell *matHeaderCellDef class="th-depart boonhome"> ພະແນກ </th>
                 <td mat-cell *matCellDef="let element" class="depart boonhome"
                     (click)="show_fix_detail(element.fix_info.fix_note)"> {{element.request_em.department.name}} </td>
             </ng-container>
@@ -139,6 +189,15 @@
             <ng-container matColumnDef="submit_date">
                 <th mat-header-cell *matHeaderCellDef hidden> Submit Date </th>
                 <td mat-cell *matCellDef="let element" hidden> {{element.submit_date | date:'dd MMM yyyy h:mm a'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="log">
+                <th mat-header-cell *matHeaderCellDef class="th-log"></th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="change_log" (click)="log_clicked(element.fix_info.em_log)">
+                        <img src="assets/images/file.svg" class="img-responsive" alt="Image" style="width: 40px;">
+                    </div>
+                </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

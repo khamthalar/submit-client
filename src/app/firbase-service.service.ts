@@ -91,6 +91,31 @@ export class FirbaseServiceService {
                 .where("submit_date",">=",startdate)
                 .where("submit_date","<=",enddate).orderBy('submit_date','desc'));
   }
+  getFixedDevices(startdate:number,enddate:number,Depart:string){
+    if(startdate==null || enddate == null){
+      if(Depart == null){
+        return this.ags.collection("DevicesSubmitted",ref=>ref
+                .where("success","==",1).orderBy('submit_date','desc'));
+      }else{
+        return this.ags.collection("DevicesSubmitted",ref=>ref
+                .where("success","==",1)
+                .where("request_em.department.name","==",Depart).orderBy('submit_date','desc'));
+      }
+    }else{
+      if(Depart==null){
+        return this.ags.collection("DevicesSubmitted",ref=>ref
+                .where("success","==",1)
+                .where("submit_date",">=",startdate)
+                .where("submit_date","<=",enddate).orderBy('submit_date','desc'));
+      }else{
+        return this.ags.collection("DevicesSubmitted",ref=>ref
+                .where("success","==",1)
+                .where("submit_date",">=",startdate)
+                .where("submit_date","<=",enddate)
+                .where("request_em.department.name","==",Depart).orderBy('submit_date','desc'));
+      }
+    }
+  }
   getAllFixedDevicesNoDate(){
     return this.ags.collection("DevicesSubmitted",ref=>ref
                 .where("success","==",1).orderBy('submit_date','desc'));
