@@ -201,12 +201,17 @@ export class ReportComponent implements OnInit {
     }
   }
   clearFilter() {
-    sessionStorage.setItem('depart', "");
     sessionStorage.setItem('rp_start_date', "");
     sessionStorage.setItem('rp_end_date', "");
-    this.depart = "";
     this.startDate = null;
     this.endDate = null;
+    if (this.user.status == "admin") {
+      sessionStorage.setItem('depart', "");
+      this.depart = "";
+    } else {
+      sessionStorage.setItem('depart', this.user.department.name);
+      this.depart = this.user.department.name;
+    }
     this.loadData();
   }
   //export to excel
