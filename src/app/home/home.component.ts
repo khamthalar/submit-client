@@ -11,6 +11,7 @@ import { FirbaseServiceService } from '../firbase-service.service';
 import {map} from 'rxjs/operators';
 import { Submit_device } from '../submitDevices';
 import { userLogin, userContact } from '../submitDevices';
+import { ItemInfoComponent } from '../dialogs/item-info/item-info.component';
 
 @Component({
   selector: 'app-home',
@@ -89,6 +90,14 @@ export class HomeComponent implements OnInit {
       })
     ).subscribe(devicelist => {
       this.deviceList = devicelist;
+    });
+  }
+  showFixInfo(item){
+    const dialogRef = this.dialog.open(ItemInfoComponent,{ disableClose: true,data: item});
+    dialogRef.afterClosed().subscribe(result => {
+      // if(result.status=="success"){
+      //   // this.updateData();
+      // }
     });
   }
 }

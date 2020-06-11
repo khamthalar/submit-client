@@ -36,6 +36,8 @@ import { MatToolbarModule, MatInputModule, MatTableModule } from '@angular/mater
 import { AdminSetupComponent } from './admin-setup/admin-setup.component';
 import { AddNewUserComponent } from './add-new-user/add-new-user.component';
 import { FixDetailComponent } from './dialogs/fix-detail/fix-detail.component';
+import { ItemInfoComponent } from './dialogs/item-info/item-info.component';
+
 
 
 
@@ -58,7 +60,8 @@ import { FixDetailComponent } from './dialogs/fix-detail/fix-detail.component';
     ReportComponent,
     AdminSetupComponent,
     AddNewUserComponent,
-    FixDetailComponent
+    FixDetailComponent,
+    ItemInfoComponent
     
   ],
   imports: [
@@ -79,6 +82,13 @@ import { FixDetailComponent } from './dialogs/fix-detail/fix-detail.component';
   exports: [CommonModule, MatToolbarModule, MatInputModule, MatTableModule],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents:[AdminSettingComponent,UserSettingDialogComponent,FixPageComponent,EditLogComponent,AddNewUserComponent,FixDetailComponent]
+  entryComponents:[
+    AdminSettingComponent,
+    UserSettingDialogComponent,
+    FixPageComponent,
+    EditLogComponent,
+    AddNewUserComponent,
+    FixDetailComponent,
+    ItemInfoComponent]
 })
 export class AppModule { }

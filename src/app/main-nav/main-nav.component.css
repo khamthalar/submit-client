@@ -40,6 +40,10 @@
   display: flex;
   align-items:center;
 }
+.btn-list {
+  border: none;
+  background-color: rgba(255,255,255,0);
+}
 
 @media(min-width:600px) {
   .main-nav {

@@ -2,7 +2,7 @@
     <div class="content">
         <ul class="list-group">
             <div *ngFor="let item of deviceList">
-                <li class="list-group-item device-item" *ngIf="item.request_em.key==user.key">
+                <li class="list-group-item device-item" *ngIf="item.request_em.key==user.key" (click)="showFixInfo(item)">
                     <div class="item-ico">
                         <ng-template [ngIf]="item.device=='Computer'">
                             <img src="assets/images/computer.svg" class="img-responsive" alt="Image"

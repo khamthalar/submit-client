@@ -4,7 +4,6 @@ import { FixInfo, EmLog, ContactInfo, fix_em, Submit_device } from '../submitDev
 import { FirbaseServiceService } from '../firbase-service.service';
 import { isUndefined } from 'util';
 
-import { map } from 'rxjs/operators';
 
 
 

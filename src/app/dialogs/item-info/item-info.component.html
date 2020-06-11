@@ -1,0 +1,39 @@
+<div class="nav-bar">
+  <div class="title-body-content">
+    <span class="lb">Item Info</span>
+  </div>
+  <img class="close_icon" src="assets/images/delete.svg" (click)="close()">
+</div>
+<div class="content boonhome">
+  <div class="image">
+    <div *ngIf="data.device=='Computer'">
+      <img src="assets/images/computer.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+    <div *ngIf="data.device=='Internet'">
+      <img src="assets/images/wifi.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+    <div *ngIf="data.device=='Printer'">
+      <img src="assets/images/printer.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+    <div *ngIf="data.device!='Computer' && data.device!='Internet' && data.device!='Printer'">
+      <img src="assets/images/wrench.svg" class="img-responsive" alt="Image" style="width: 100px;">
+    </div>
+  </div>
+  <div class="description">ອາການ: {{data.description}} <span style="color: red;"
+      *ngIf="data.priotity==1">(ສ້ອມແປງດ່ວນ)</span></div>
+  <div class="em">ຜູ້ແຈ້ງ: {{data.request_em.name}}, ({{data.request_em.department.name}})</div>
+  <div class="fix_status">ສະຖານະ: {{data.fix_info.status}}</div>
+
+
+  <!-- <button type="button" class="btn btn-success">ວິທີສ້ອມແປງ</button> -->
+
+
+
+  <div class="fix_em boonhome">ຜູ້ຮັບຜິດຊອບ:{{fix_em_name}}</div>
+  <div class="boonhome">ເບີໂທ: {{data.fix_em.contact_info.phone_number}}</div>
+
+  <!-- <pre>{{data | json}}</pre> -->
+  <div class="bottom-btn boonhome">
+    <button (click)="close()" class="btn-ok noselect none-outline">ok</button>
+  </div>
+</div>

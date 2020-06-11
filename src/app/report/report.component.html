@@ -95,7 +95,7 @@
                 </div>
                 <div class="depart">
                     <input [(ngModel)]="depart" type="text" style="outline: none;box-shadow: none !important;" class="form-control"
-                        id="deaprt" aria-describedby="inputGroupPrepend" placeholder="ພະແນກ">
+                        id="deaprt" aria-describedby="inputGroupPrepend" placeholder="ພະແນກ" [readonly]="user.status!='admin'">
                 </div>
                 <div class="input-group search">
                     <div class="input-group-prepend">

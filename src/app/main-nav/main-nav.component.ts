@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { throwToolbarMixedModesError, MatDialog } from '@angular/material';
 import { SubmitPageComponent } from '../submit-page/submit-page.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -19,9 +20,13 @@ export class MainNavComponent implements OnInit{
     .pipe(
       map(result => result.matches)
     );
-  constructor(private breakpointObserver: BreakpointObserver,public dialog: MatDialog) {}
+  constructor(private breakpointObserver: BreakpointObserver,public dialog: MatDialog,private router: Router) {}
   logout(){
     this.logOut_Clicked.emit();
+  }
+  openReport() {
+    this.router.navigate(['report']);
+    sessionStorage.setItem('page_name', 'report');
   }
   ngOnInit() {
     this.username = sessionStorage.getItem('user_name');

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource, MatPaginator, MatSort, MatDatepickerInputEvent, MatDialog, MatAccordion } from '@angular/material';
 import { FirbaseServiceService } from '../firbase-service.service';
 import { map, buffer } from 'rxjs/operators';
-import { Submit_device } from '../submitDevices';
+import { Submit_device, userLogin } from '../submitDevices';
 import * as XLSX from 'xlsx';
 import { FixDetailComponent } from '../dialogs/fix-detail/fix-detail.component';
 import { EditLogComponent } from '../dialogs/edit-log/edit-log.component';
@@ -33,6 +33,7 @@ export class ReportComponent implements OnInit {
   openfilter: boolean = false;
 
   depart: string;
+  user: userLogin;
 
   @ViewChild('TABLE') table: ElementRef;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -41,11 +42,18 @@ export class ReportComponent implements OnInit {
 
   ngOnInit() {
 
-    if (sessionStorage.getItem('depart') == null) {
-      this.depart = "";
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    console.log(this.user.status);
+    if (this.user.status == "admin") {
+      if (sessionStorage.getItem('depart') == null) {
+        this.depart = "";
+      } else {
+        this.depart = sessionStorage.getItem('depart');
+      }
     } else {
-      this.depart = sessionStorage.getItem('depart');
+      this.depart = this.user.department.name;
     }
+
     if (sessionStorage.getItem('rp_start_date') == null || sessionStorage.getItem('rp_start_date') == "") {
       this.startDate = null;
     } else {
@@ -59,8 +67,13 @@ export class ReportComponent implements OnInit {
     this.loadData();
   }
   gotoDeskboard() {
-    this.router.navigate(['desboard']);
-    sessionStorage.setItem('page_name', 'desboard');
+    if (this.user.status == "admin") {
+      this.router.navigate(['desboard']);
+      sessionStorage.setItem('page_name', 'desboard');
+    } else {
+      this.router.navigate(['home']);
+      sessionStorage.setItem('page_name', 'home');
+    }
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
