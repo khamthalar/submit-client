@@ -66,3 +66,14 @@ export class userLogin{
     password:string;
     active:number;
 }
+
+export interface Notification {
+    title: string;
+    body: string;
+}
+
+export interface Playload {
+    from: string;
+    notification: Notification;
+    collapse_key: string;
+}

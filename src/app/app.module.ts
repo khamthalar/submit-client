@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { HomeComponent } from './home/home.component';
@@ -15,13 +15,13 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 
 
-import {MaterialModule} from './material-module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MaterialModule } from './material-module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { AdminDesboardComponent } from './admin-desboard/admin-desboard.component';
 
-import {AngularFireModule} from '@angular/fire';
+import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
@@ -38,6 +38,13 @@ import { AddNewUserComponent } from './add-new-user/add-new-user.component';
 import { FixDetailComponent } from './dialogs/fix-detail/fix-detail.component';
 import { ItemInfoComponent } from './dialogs/item-info/item-info.component';
 
+
+
+
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MessagingService } from './services/messaging.service';
+import { AsyncPipe } from '../../node_modules/@angular/common';
 
 
 
@@ -62,7 +69,7 @@ import { ItemInfoComponent } from './dialogs/item-info/item-info.component';
     AddNewUserComponent,
     FixDetailComponent,
     ItemInfoComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -75,14 +82,16 @@ import { ItemInfoComponent } from './dialogs/item-info/item-info.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
     AngularFirestoreModule.enablePersistence(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     CommonModule
   ],
   exports: [CommonModule, MatToolbarModule, MatInputModule, MatTableModule],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService, AuthGuard,MessagingService,AsyncPipe],
   bootstrap: [AppComponent],
-  entryComponents:[
+  entryComponents: [
     AdminSettingComponent,
     UserSettingDialogComponent,
     FixPageComponent,
